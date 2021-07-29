@@ -1,28 +1,43 @@
-import React from "react"
+import React, { useState, useEffect } from "react";
 import Navbar from "../components/navbar";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
-import Datagrid from "../components/datagrid"
-import pic from '../public/butterfly.png'
+import Datagrid from "../components/datagrid";
+import pic from '../public/butterfly.png';
 
-
-class Welcome extends React.Component {
-    render(props) {
-        const item ={
-            src:pic,
-            alt:'temp'
-        }
-        return (
-            <div>
-                <Header />
-                <Navbar />
-                <h1 className="text-center"> Title </h1>
-                <Datagrid data={item}/>
-                <Footer />
-            </div>
-        );
+function Welcome() {
+    const [data, setData] = useState([]);
+    const getData = () => {
+        fetch('http://localhost:4000/api/test', {
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'
+            }
+        })
+            .then(function (response) {
+                console.log(response);
+                return response.json();
+            })
+            .then(function (myJson) {
+                console.log(myJson);
+                setData(myJson);
+            })
     }
+    useEffect(() => {
+        getData();
+    }, []);
+    return (
+        <div>
+            <Header />
+            <Navbar />
+            <h1 className="text-center"> Title </h1>
+            <h1>test!
+            {data.map((item)=><p key="item.name">{item.name}</p>)}
+            </h1>
+            <Datagrid />
+            <Footer />
+        </div>
+    );
 }
-
 
 export default Welcome;
