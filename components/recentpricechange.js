@@ -25,11 +25,31 @@ class Recentpricechange extends React.Component {
                     width={100}
                     height={100}
                 /> </div>
-                {/* <div><Item item={props} /> </div>
-                <div><Item item={props} /> </div>
-                <div><Item item={props} /> </div>
-                <div><Item item={props} /> </div>
-                <div><Item item={props} /> </div> */}
+                <h1>test!
+
+                    {this.props.items.map((item) => 
+                    <div key="item.name">
+                    <p >
+                        {item.name}
+                    </p>
+                    <p >
+                        {item.price}
+                    </p>
+                    <p >
+                        {item.img_path}
+                    </p>
+                    <Image
+                    src={"http://localhost:4000/api/img/"+item.price}
+                    alt="test"
+                    width={100}
+                    height={100}
+                    /> 
+                    </div>
+                    )
+                    
+                    }
+
+                </h1>
             </div>
         );
     };

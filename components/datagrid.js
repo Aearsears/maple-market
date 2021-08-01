@@ -7,7 +7,7 @@ import Recentpricechange from "./recentpricechange"
 
 class Datagrid extends React.Component{
 
-    render(props){
+    render(){
         return(
             <div className="grid grid-cols-2 gap-2 place-items-center inline-block">   
                 <div>
@@ -19,7 +19,7 @@ class Datagrid extends React.Component{
                 <div>
                     <Recentlistings />
                 </div>
-                <div><Recentpricechange items={props} /> </div>
+                <div><Recentpricechange items={this.props.data} /> </div>
             </div>
         );
     };

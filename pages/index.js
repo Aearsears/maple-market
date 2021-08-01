@@ -31,10 +31,7 @@ function Welcome() {
             <Header />
             <Navbar />
             <h1 className="text-center"> Title </h1>
-            <h1>test!
-            {data.map((item)=><p key="item.name">{item.name}</p>)}
-            </h1>
-            <Datagrid />
+            <Datagrid data = {data}/>
             <Footer />
         </div>
     );
