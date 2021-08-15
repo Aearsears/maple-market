@@ -47,7 +47,7 @@ class WelcomePage extends React.Component {
                 <div>
                     <Header />
                     <Navbar />
-                    <h1 className="text-center"> Title </h1>
+                    <h1 className="text-center"> Welcome to MapleMarket! </h1>
                     <Datagrid data={items} />
                     <Footer />
                 </div>
