@@ -20,12 +20,14 @@ class WelcomePage extends React.Component {
                 Accept: "application/json",
             },
         })
-            .then(response=>response.json()) // RETURN RESPONSE.JSON()
+            .then((response)=>{
+                return response.json()}) // RETURN RESPONSE.JSON()
             .then(
                 data=> {
+                    console.log(typeof data);
                     this.setState({
                         isLoaded: true,
-                        items: data,
+                        items: Object.values(data),
                     });
                 },
                 (error) => {
