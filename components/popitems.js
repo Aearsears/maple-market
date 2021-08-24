@@ -1,21 +1,50 @@
-import React from "react"
+import React from "react";
+import Image from "next/image";
+import ItemCard from "./itemCard";
+import Typography from "@material-ui/core/Typography";
 
 class Popularitems extends React.Component {
-    render() {
-        return (
-            <div>
-               <h2>Most Popular Items</h2>
-            <div className="grid grid-cols-3 gap-2 place-items-center h-48">
-                <div>item</div>
-                <div>item</div>
-                <div>item</div>
-                <div>item</div>
-                <div>item</div>
-                <div>item</div>
+  render(props) {
+    return (
+      <div>
+        <Typography
+          variant="h6"
+          id="Title"
+          component="div"
+          className="text-center"
+        >
+          Popular Items
+        </Typography>
+        <div className="place-content-center place-items-center justify-items-center flex">
+          {this.props.items.map((item, index) => (
+            <div key={"0" + index}>
+              <ItemCard
+                name={item.name}
+                price={item.price}
+                imgSrc={item.imgSrc}
+                pchange={item.pchange}
+              />
             </div>
-            </div>
-        );
-    };
-};
+          ))}
+          {/* {this.props.items.map((item, index) => (
+                                  <div key={"0" + index}>
+                                      <p>{item.name}</p>
+                                      <p>{item.price}</p>
+                                      <Image
+                                          src={
+                                              "http://localhost:4000/api/img/" +
+                                              item.price
+                                          }
+                                          alt="test"
+                                          width={16}
+                                          height={16}
+                                      />
+                                  </div>
+                              ))} */}
+        </div>
+      </div>
+    );
+  }
+}
 
 export default Popularitems;

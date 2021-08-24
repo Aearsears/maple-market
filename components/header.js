@@ -16,7 +16,7 @@ class Header extends React.Component {
 				width = "32"
 				/>
 				<div className="w-full md:w-auto mb-6 md:mb-0 text-center md:text-right">
-					<a href="#" className="inline-block no-underline bg-black text-white text-sm py-2 px-3">Sign Up</a>
+					<a href="#" className="inline-block no-underline bg-Ebony text-white text-sm py-2 px-3">Sign Up</a>
 				</div>
 			</div>
 		</header>

@@ -1,19 +1,27 @@
 import React from "react";
 import Image from "next/image";
 import ItemCard from "./itemCard";
+import Typography from "@material-ui/core/Typography";
 
 class Recentpricechange extends React.Component {
-    render(props) {
-        return (
-            <div>
-                <h1 className="text-center">Recent Price Changes</h1>
-                <div className="place-content-center place-items-center justify-items-center flex">
-                    {this.props.items.map((item, index) => (
-                        <div key={"0" + index}>
-                        <ItemCard name={item.name} price ={item.price} imgSrc={item.price} />
-                        </div>
-                    ))}
-                    {/* {this.props.items.map((item, index) => (
+  render(props) {
+    return (
+      <div>
+        <Typography variant="h6" id="Title" component="div" className="text-center">
+          Recent Price Changes
+        </Typography>
+        <div className="place-content-center place-items-center justify-items-center flex">
+          {this.props.items.map((item, index) => (
+            <div key={"0" + index}>
+              <ItemCard
+                name={item.name}
+                price={item.price}
+                imgSrc={item.imgSrc}
+                pchange={item.pchange}
+              />
+            </div>
+          ))}
+          {/* {this.props.items.map((item, index) => (
                         <div key={"0" + index}>
                             <p>{item.name}</p>
                             <p>{item.price}</p>
@@ -28,10 +36,10 @@ class Recentpricechange extends React.Component {
                             />
                         </div>
                     ))} */}
-                </div>
-            </div>
-        );
-    }
+        </div>
+      </div>
+    );
+  }
 }
 
 export default Recentpricechange;

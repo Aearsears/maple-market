@@ -49,7 +49,7 @@ class WelcomePage extends React.Component {
             return <div>Loading...</div>;
         } else {
             return (
-                <div>
+                <div className="h-screen">
                     <Head>
                         <title>Maple Market</title>
                         <meta name="viewport" content="width=device-width, initial-scale=1.0"></meta>
@@ -59,7 +59,7 @@ class WelcomePage extends React.Component {
                     </Head>
                     <Header />
                     <Navbar />
-                    <h1 className="text-center py-2"> Welcome to MapleMarket! </h1>
+                    <h1 className="text-center py-2 bg-Artichoke"> Welcome to MapleMarket! </h1>
                     <Datagrid data={items} />
                     <Footer />
                 </div>
