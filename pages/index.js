@@ -1,8 +1,11 @@
 import React, { useState, useEffect } from "react";
 import Navbar from "../components/navbar";
-import Header from "../components/Header";
-import Footer from "../components/Footer";
+import Header from "../components/header";
+import Footer from "../components/footer";
 import Datagrid from "../components/datagrid";
+import Head from 'next/head'
+import 'tailwindcss/tailwind.css'
+
 
 class WelcomePage extends React.Component {
     constructor(props) {
@@ -24,7 +27,7 @@ class WelcomePage extends React.Component {
                 return response.json()}) // RETURN RESPONSE.JSON()
             .then(
                 data=> {
-                    console.log(typeof data);
+                    // console.log(typeof data);
                     this.setState({
                         isLoaded: true,
                         items: Object.values(data),
@@ -47,9 +50,16 @@ class WelcomePage extends React.Component {
         } else {
             return (
                 <div>
+                    <Head>
+                        <title>Maple Market</title>
+                        <meta name="viewport" content="width=device-width, initial-scale=1.0"></meta>
+                        <meta name="description" content="Prices for Maplestory"></meta>
+                        <meta name="keywords" content="Maplestory, GMS, EMS"></meta>
+                        <meta charset="UTF-8"></meta>
+                    </Head>
                     <Header />
                     <Navbar />
-                    <h1 className="text-center"> Welcome to MapleMarket! </h1>
+                    <h1 className="text-center py-2"> Welcome to MapleMarket! </h1>
                     <Datagrid data={items} />
                     <Footer />
                 </div>
