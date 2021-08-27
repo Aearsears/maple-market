@@ -7,6 +7,7 @@ import Typography from "@material-ui/core/Typography";
 import React from "react";
 import Image from "next/image";
 import ButtonBase from "@material-ui/core/ButtonBase";
+import Link from "next/link";
 
 class ItemCard extends React.Component {
   constructor(props) {
@@ -18,33 +19,37 @@ class ItemCard extends React.Component {
 
   render(props) {
     return (
-      <Card className={this.props.pchange > 0 ? "bg-green-300" : "bg-red-300"}>
-        <ButtonBase
-          onClick={() => {
-            alert("clicked");
-          }}
-          className="h-full w-full"
+      <Link
+        href={`/prices/items/${encodeURIComponent(this.props.id)}`}
+        passHref
+      >
+        <Card
+          className={this.props.pchange > 0 ? "bg-green-300" : "bg-red-300"}
         >
-          <CardContent className="h-full w-full">
-            {/* <Typography variant="body2" component="h6">
+          <ButtonBase className="h-full w-full">
+            <CardContent className="h-full w-full">
+              {/* <Typography variant="body2" component="h6">
                         {this.props.name}
                     </Typography>
                     <Typography className="typo" color="textSecondary">
                         {this.props.price}
                     </Typography> */}
-            <Image
-              src={"http://localhost:4000/api/img/" + this.props.imgSrc}
-              alt={this.props.name}
-              width={64}
-              height={64}
-            />
-          </CardContent>
-        </ButtonBase>
+              <Image
+                src={"http://localhost:4000/api/img/" + this.props.id}
+                alt={this.props.name}
+                width={64}
+                height={64}
+              />
+            </CardContent>
+          </ButtonBase>
 
-        <CardActions>
-          <Button size="small">{ this.props.pchange > 0 ? "↑" : "↓" } {this.props.pchange} </Button>
-        </CardActions>
-      </Card>
+          <CardContent className="cursor-pointer">
+            <Typography variant="subtitle1" align="center">
+              {this.props.pchange > 0 ? "↑" : "↓"} {this.props.pchange}{" "}
+            </Typography>
+          </CardContent>
+        </Card>
+      </Link>
     );
   }
 }

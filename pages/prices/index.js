@@ -1,14 +1,13 @@
 import React, { useState, useEffect } from "react";
-import Navbar from "../../../components/navbar";
-import Header from "../../../components/header";
-import Footer from "../../../components/footer";
-import Datagrid from "../../../components/datagrid";
-import Popularitems from "../../../components/popitems"
-import Head from 'next/head'
-import 'tailwindcss/tailwind.css'
+import Navbar from "../../components/navbar";
+import Header from "../../components/header";
+import Footer from "../../components/footer";
+import Datagrid from "../../components/datagrid";
+import Popularitems from "../../components/popitems";
+import Head from "next/head";
+import "tailwindcss/tailwind.css";
 
-
-class Items extends React.Component {
+class Prices extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -24,10 +23,11 @@ class Items extends React.Component {
                 Accept: "application/json",
             },
         })
-            .then((response)=>{
-                return response.json()}) // RETURN RESPONSE.JSON()
+            .then((response) => {
+                return response.json();
+            }) // RETURN RESPONSE.JSON()
             .then(
-                data=> {
+                (data) => {
                     // console.log(typeof data);
                     this.setState({
                         isLoaded: true,
@@ -53,16 +53,27 @@ class Items extends React.Component {
                 <div className="h-screen">
                     <Head>
                         <title>Maple Market</title>
-                        <meta name="viewport" content="width=device-width, initial-scale=1.0"></meta>
-                        <meta name="description" content="Prices for Maplestory"></meta>
-                        <meta name="keywords" content="Maplestory, GMS, EMS"></meta>
+                        <meta
+                            name="viewport"
+                            content="width=device-width, initial-scale=1.0"
+                        ></meta>
+                        <meta
+                            name="description"
+                            content="Prices for Maplestory"
+                        ></meta>
+                        <meta
+                            name="keywords"
+                            content="Maplestory, GMS, EMS"
+                        ></meta>
                         <meta charset="UTF-8"></meta>
                     </Head>
                     <Header />
                     <Navbar />
-                    <h1 className="text-center py-2 bg-Artichoke"> Welcome to MapleMarket! </h1>
-                    <p>placeholder</p>
-                    {/* <Popularitems items={items} /> */}
+                    <h1 className="text-center py-2 bg-Artichoke">
+                        {" "}
+                        Welcome to MapleMarket!{" "}
+                    </h1>
+                    <Popularitems items={items} />
                     <Footer />
                 </div>
             );
@@ -70,4 +81,4 @@ class Items extends React.Component {
     }
 }
 
-export default Items;
+export default Prices;

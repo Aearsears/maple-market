@@ -14,6 +14,7 @@ class Recentpricechange extends React.Component {
           {this.props.items.map((item, index) => (
             <div key={"0" + index}>
               <ItemCard
+                id={item.id}
                 name={item.name}
                 price={item.price}
                 imgSrc={item.imgSrc}
