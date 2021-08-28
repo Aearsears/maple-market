@@ -18,6 +18,35 @@ import {
 function ItemPricePage(props) {
     const router = useRouter();
     // console.log(props);
+    let graph;
+    let check = Object.keys(props.pricedata).length;
+    if (check > 0) {
+        graph = (
+            <div>
+                <p>{props.pricedata[0].Date}</p>
+                <p>{props.pricedata[0]["Adj Close"]}</p>
+                <LineChart
+                    width={1000}
+                    height={300}
+                    data={props.pricedata}
+                    margin={{ top: 5, right: 20, bottom: 5, left: 0 }}
+                >
+                    <Line
+                        type="monotone"
+                        dataKey="Adj Close"
+                        stroke="#8884d8"
+                        dot={false}
+                    />
+                    <CartesianGrid stroke="#ccc" strokeDasharray="5 5" />
+                    <XAxis dataKey="Date" />
+                    <YAxis />
+                    <Tooltip />
+                </LineChart>
+            </div>
+        );
+    } else {
+        graph = <div>No price data</div>;
+    }
     return (
         <div className="h-screen">
             <Head>
@@ -48,27 +77,16 @@ function ItemPricePage(props) {
                 )
             </p>
             <Image
-                src={"http://localhost:4000/api/img/" + props.itemdata.id}
+                src={
+                    "http://localhost:4000/api/item/" +
+                    props.itemdata.id +
+                    "/img"
+                }
                 alt={props.name}
                 width={64}
                 height={64}
             />
-            <p>{props.pricedata[0].Date}</p>
-            <p>{props.pricedata[0]["Adj Close"]}</p>
-
-            <LineChart
-                width={600}
-                height={300}
-                data={props.pricedata}
-                margin={{ top: 5, right: 20, bottom: 5, left: 0 }}
-            >
-                <Line type="monotone" dataKey="Adj Close" stroke="#8884d8" />
-                <CartesianGrid stroke="#ccc" strokeDasharray="5 5" />
-                <XAxis dataKey="Date" />
-                <YAxis />
-                <Tooltip />
-            </LineChart>
-
+            {graph}
             <Footer />
         </div>
     );

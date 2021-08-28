@@ -35,7 +35,7 @@ class ItemCard extends React.Component {
                         {this.props.price}
                     </Typography> */}
               <Image
-                src={"http://localhost:4000/api/img/" + this.props.id}
+                src={"http://localhost:4000/api/item/"+ this.props.id +"/img"}
                 alt={this.props.name}
                 width={64}
                 height={64}
