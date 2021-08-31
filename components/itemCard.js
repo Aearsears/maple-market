@@ -10,48 +10,92 @@ import ButtonBase from "@material-ui/core/ButtonBase";
 import Link from "next/link";
 
 class ItemCard extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      a: [],
-    };
-  }
+    constructor(props) {
+        super(props);
+        this.state = {
+            a: [],
+        };
+    }
 
-  render(props) {
-    return (
-      <Link
-        href={`/prices/items/${encodeURIComponent(this.props.id)}`}
-        passHref
-      >
-        <Card
-          className={this.props.pchange > 0 ? "bg-green-300" : "bg-red-300"}
-        >
-          <ButtonBase className="h-full w-full">
-            <CardContent className="h-full w-full">
-              {/* <Typography variant="body2" component="h6">
-                        {this.props.name}
-                    </Typography>
-                    <Typography className="typo" color="textSecondary">
-                        {this.props.price}
-                    </Typography> */}
-              <Image
-                src={"http://localhost:4000/api/item/"+ this.props.id +"/img"}
-                alt={this.props.name}
-                width={64}
-                height={64}
-              />
-            </CardContent>
-          </ButtonBase>
+    render(props) {
+        let card;
+        if (this.props.type == "suggestion") {
+            card =
+            (
+                <Card className={"bg-transparent"}>
+                    <ButtonBase className="h-full w-full">
+                        <CardContent className="h-full w-full">
+                            {/* <Typography variant="body2" component="h6">
+          {this.props.name}
+      </Typography>
+      <Typography className="typo" color="textSecondary">
+          {this.props.price}
+      </Typography> */}
+                            <Image
+                                src={
+                                    "http://localhost:4000/api/item/" +
+                                    this.props.id +
+                                    "/img"
+                                }
+                                alt={this.props.name}
+                                width={64}
+                                height={64}
+                            />
+                        </CardContent>
+                    </ButtonBase>
+                </Card>
+            );
+        } else {
+            card =
+            (
+                <Card
+                    className={
+                        this.props.pchange > 0 ? "bg-green-300" : "bg-red-300"
+                    }
+                >
+                    <ButtonBase className="h-full w-full">
+                        <CardContent className="h-full w-full">
+                            {/* <Typography variant="body2" component="h6">
+          {this.props.name}
+      </Typography>
+      <Typography className="typo" color="textSecondary">
+          {this.props.price}
+      </Typography> */}
+                            <Image
+                                src={
+                                    "http://localhost:4000/api/item/" +
+                                    this.props.id +
+                                    "/img"
+                                }
+                                alt={this.props.name}
+                                width={64}
+                                height={64}
+                            />
+                        </CardContent>
+                    </ButtonBase>
 
-          <CardContent className="cursor-pointer">
-            <Typography variant="subtitle1" align="center">
-              {this.props.pchange > 0 ? "↑" : "↓"} {this.props.pchange}{" "}
-            </Typography>
-          </CardContent>
-        </Card>
-      </Link>
-    );
-  }
+                    <CardContent className="cursor-pointer">
+                        <Typography variant="subtitle1" align="center">
+                            {this.props.pchange > 0 ? "↑" : "↓"}{" "}
+                            {this.props.pchange}
+                        </Typography>
+                    </CardContent>
+                </Card>
+            );
+        }
+        return (
+            <Link
+                href={
+                    this.props.type == "suggestion"
+                        ? "test"
+                        : `/prices/items/${encodeURIComponent(this.props.id)}`
+                }
+                passHref
+            >
+                {card}
+            </Link>
+        );
+    }
 }
 
 export default ItemCard;

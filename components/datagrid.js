@@ -1,9 +1,7 @@
 import React from "react"
 import Mesomarket from "./mesomarket"
-import Popularitems from "./popitems"
 import Recentlistings from "./recentlistings"
-import Recentpricechange from "./recentpricechange"
-
+import ItemGrid from "./itemgrid"
 
 class Datagrid extends React.Component{
     render(){
@@ -13,12 +11,12 @@ class Datagrid extends React.Component{
                     <Mesomarket />
                 </div>
                 <div>
-                    <Popularitems items={this.props.data} />
+                    <ItemGrid items={this.props.data} title={"Popular Items"} />
                 </div>
                 <div>
                     <Recentlistings />
                 </div>
-                <div><Recentpricechange items={this.props.data} /> </div>
+                <div><ItemGrid items={this.props.data} title={"Recent Price Changes"} /> </div>
             </div>
         );
     };

@@ -2,8 +2,7 @@ import React, { useState, useEffect } from "react";
 import Navbar from "../../components/navbar";
 import Header from "../../components/header";
 import Footer from "../../components/footer";
-import Datagrid from "../../components/datagrid";
-import Popularitems from "../../components/popitems";
+import ItemGrid from "../../components/itemgrid";
 import Head from "next/head";
 import "tailwindcss/tailwind.css";
 
@@ -73,7 +72,7 @@ class Prices extends React.Component {
                         {" "}
                         Welcome to MapleMarket!{" "}
                     </h1>
-                    <Popularitems items={items} />
+                    <ItemGrid items={items} title={"placehodler"} />
                     <Footer />
                 </div>
             );

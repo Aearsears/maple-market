@@ -3,7 +3,9 @@ import React from "react";
 import Navbar from "../../../components/navbar";
 import Header from "../../../components/header";
 import Footer from "../../../components/footer";
+import Button from "@material-ui/core/Button";
 import Head from "next/head";
+import Link from "next/link";
 import ItemCard from "../../../components/itemCard";
 import Image from "next/image";
 import {
@@ -17,9 +19,9 @@ import {
 
 function ItemPricePage(props) {
     const router = useRouter();
-    // console.log(props);
     let graph;
     let check = Object.keys(props.pricedata).length;
+    // console.log("LOOK HERE:"+check);
     if (check > 0) {
         graph = (
             <div>
@@ -87,6 +89,15 @@ function ItemPricePage(props) {
                 height={64}
             />
             {graph}
+            <Link href="/prices/suggestion" passHref>
+            <Button
+                variant="contained"
+                className="bg-Artichoke"
+                >
+                Make a price suggestion
+            </Button>
+            </Link>
+
             <Footer />
         </div>
     );
