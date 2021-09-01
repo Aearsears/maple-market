@@ -87,7 +87,7 @@ class ItemCard extends React.Component {
             <Link
                 href={
                     this.props.type == "suggestion"
-                        ? "test"
+                        ? ""
                         : `/prices/items/${encodeURIComponent(this.props.id)}`
                 }
                 passHref

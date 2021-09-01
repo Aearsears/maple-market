@@ -72,7 +72,7 @@ class Prices extends React.Component {
                         {" "}
                         Welcome to MapleMarket!{" "}
                     </h1>
-                    <ItemGrid items={items} title={"placehodler"} />
+                    <ItemGrid items={items} title={"CHSNGE THIS TO HAVE CARDS OF EACH TYPE OF ITEM IN MAPLESOTRY, ETC, USE, CASH, EQUIPS"} type={"prices"} />
                     <Footer />
                 </div>
             );

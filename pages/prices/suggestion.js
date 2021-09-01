@@ -3,6 +3,7 @@ import Navbar from "../../components/navbar";
 import Header from "../../components/header";
 import Footer from "../../components/footer";
 import ItemGrid from "../../components/itemgrid";
+import PriceSuggestionForm from "../../components/priceSuggestionForm"
 import Head from "next/head";
 import "tailwindcss/tailwind.css";
 
@@ -72,6 +73,7 @@ class PriceSuggestion extends React.Component {
                         Welcome to MapleMarket!
                     </h1>
                     <h1>Price suggestion</h1>
+                    <PriceSuggestionForm />
                     <ItemGrid items={items} title={"All items"} type={"suggestion"} />
                     <Footer />
                 </div>
