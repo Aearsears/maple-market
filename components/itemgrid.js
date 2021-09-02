@@ -14,11 +14,12 @@ class ItemGrid extends React.Component {
             <div key={"0" + index}>
               <ItemCard
                 id={item.id}
-                name={item.name}
+                itemName={item.name}
                 price={item.price}
                 imgSrc={item.imgSrc}
                 pchange={item.pchange}
                 type={this.props.type}
+                handleItemChange={this.props.handleItemChange}
               />
             </div>
           ))}

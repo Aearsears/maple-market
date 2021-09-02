@@ -23,7 +23,7 @@ class ItemCard extends React.Component {
             card =
             (
                 <Card className={"bg-transparent"}>
-                    <ButtonBase className="h-full w-full">
+                    <ButtonBase className="h-full w-full" onClick= {() => this.props.handleItemChange(this)}>
                         <CardContent className="h-full w-full">
                             {/* <Typography variant="body2" component="h6">
           {this.props.name}
@@ -37,7 +37,7 @@ class ItemCard extends React.Component {
                                     this.props.id +
                                     "/img"
                                 }
-                                alt={this.props.name}
+                                alt={this.props.itemName}
                                 width={64}
                                 height={64}
                             />
