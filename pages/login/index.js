@@ -33,7 +33,7 @@ const SignUpForm = () => {
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(values, null, 2),
             };
-            fetch("http://localhost:4000/signup", requestOptions)
+            fetch("http://localhost:4000/login", requestOptions)
                 .then(async (response) => {
                     const data = await response.json();
 
@@ -69,7 +69,9 @@ const SignUpForm = () => {
                 Welcome to MapleMarket!{" "}
             </h1>
             <div>
-                <Typography variant="h1">Sign up</Typography>
+                <Typography variant="h1">
+                    Login
+                </Typography>
                 <form onSubmit={formik.handleSubmit}>
                     <TextField
                         fullWidth

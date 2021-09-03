@@ -20,11 +20,6 @@ class ChooseItem extends React.Component {
     render(props) {
         return(
             <div>
-            <Button onClick={this.props.nextStep} variant="contained" color="primary">
-                next step
-            </Button>
-
-            <div>
                 <div>Choose an item</div>
                 <ItemGrid
                     items={this.props.items}
@@ -33,7 +28,6 @@ class ChooseItem extends React.Component {
                     handleItemChange={this.props.handleItemChange}
                     />
             </div>
-        </div>
                     );
     };
 }

@@ -1,12 +1,14 @@
 import React, { useState, useEffect } from "react";
 import ItemGrid from "../itemgrid";
 import ItemCard from "../itemCard";
-import { Button,TextField } from "@material-ui/core";
+import { Button, TextField } from "@material-ui/core";
 import "tailwindcss/tailwind.css";
 import ChooseItem from "./chooseItem";
+import ProvideDetails from "./provideDetails";
 
 //first step choose your item
 //second step fill in details, price, proof(pictures?) and submit
+// if on item info page, and click make a suggestion, should already select the item and go to step 2 of the "form"
 
 class PriceSuggestionForm extends React.Component {
     constructor(props) {
@@ -32,21 +34,43 @@ class PriceSuggestionForm extends React.Component {
         const step = this.state.step;
         this.setState({ step: step + 1 });
     };
+    submitSugg = () => {
+        // send the post request
+        // console.log(this.state.details);
+        // console.log(this.state.suggPrice);
+        const one = this.state.details;
+        const two = this.state.suggPrice;
+        const body = { "details": one, "suggPrice":two };
+        const requestOptions = {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(body, null, 2),
+        };
+        fetch("http://localhost:4000/api/item/pricesuggestion", requestOptions)
+            .then(async (response) => {
+                const data = await response.json();
+
+                // check for error response
+                if (!response.ok) {
+                    // get error message from body or default to response status
+                    const error = (data && data.message) || response.status;
+                    return Promise.reject(error);
+                }
+            })
+            .catch((error) => {
+                console.error("There was an error!", error);
+            });
+        this.nextStep();
+    };
 
     handleChange(event) {
         const target = event.target;
         const value = target.value;
-        const name = target.name;
+        const name = target.id;
         this.setState({ [name]: value });
     }
 
     handleItemChange(event) {
-        // console.log(event);
-        // console.log(event.currentTarget.itemName);
-        // console.log(this.props);
-        // const target = event.currentTarget;
-        // const value = target.value;
-        // const name = target.name;
         this.nextStep();
         this.setState({ item: event });
     }
@@ -69,52 +93,15 @@ class PriceSuggestionForm extends React.Component {
                 );
             case 1:
                 return (
-                    <div>
-                        step 1 : {values.item.props.itemName}
-                        <ItemCard
-                            id={values.item.props.id}
-                            itemName={values.item.props.name}
-                            price={values.item.props.price}
-                            imgSrc={values.item.props.imgSrc}
-                            pchange={values.item.props.pchange}
-                            type={"none"}
-                        />
-                        <TextField
-                            placeholder="Email Address"
-                            label="Email Address"
-                            // onChange={this.handleChange("email")}
-                            defaultValue={values.details}
-                            // variant="outlined"
-                            autoComplete="email"
-                            fullWidth
-                        />
-                        <TextField
-                            placeholder="Username"
-                            label="Username"
-                            // onChange={this.handleChange("username")}
-                            defaultValue={values.suggPrice}
-                            // variant="outlined"
-                            autoComplete="username"
-                            fullWidth
-                        />
-                        <Button
-                            onClick={this.nextStep}
-                            variant="contained"
-                            color="primary"
-                        >
-                            next step
-                        </Button>
-                        <Button
-                            onClick={this.prevStep}
-                            variant="contained"
-                            color="primary"
-                        >
-                            prev step
-                        </Button>
-                    </div>
+                    <ProvideDetails
+                        values={values}
+                        submitSugg={this.submitSugg}
+                        handleChange={this.handleChange}
+                        prevStep={this.prevStep}
+                    />
                 );
             default:
-                return <div>Something went wrong...</div>;
+                return <div>Submitted!</div>;
         }
     }
 }

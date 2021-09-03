@@ -16,6 +16,10 @@ class ItemCard extends React.Component {
             a: [],
         };
     }
+    onClick = (event) => {
+        console.log("working!")
+        event.preventDefault()
+      }
 
     render(props) {
         let card;
@@ -23,7 +27,7 @@ class ItemCard extends React.Component {
             card =
             (
                 <Card className={"bg-transparent"}>
-                    <ButtonBase className="h-full w-full" onClick= {() => this.props.handleItemChange(this)}>
+                    <ButtonBase className="h-full w-full" onClick= {() => (typeof(this.props.handleItemChange) === "function" ? this.props.handleItemChange(this) : void(0))}>
                         <CardContent className="h-full w-full">
                             {/* <Typography variant="body2" component="h6">
           {this.props.name}
@@ -83,13 +87,23 @@ class ItemCard extends React.Component {
                 </Card>
             );
         }
+
+        let link;
+        if(this.props.type == "suggestion"){
+            link="#";
+
+        }
+        else{
+            link = `/prices/items/${encodeURIComponent(this.props.id)}`
+        }
+
+        let linkprops={
+            href:link,
+            onClick:this.onClick
+        };
         return (
             <Link
-                href={
-                    this.props.type == "suggestion"
-                        ? ""
-                        : `/prices/items/${encodeURIComponent(this.props.id)}`
-                }
+                {...linkprops}
                 passHref
             >
                 {card}
