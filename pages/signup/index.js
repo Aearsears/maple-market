@@ -27,9 +27,9 @@ const SignUpForm = () => {
     });
     const formik = useFormik({
         initialValues: {
-            email: "johnsmith@gmail.com",
+            username: "johnsmith@gmail.com",
             password: "password",
-            displayName:"wackywizard3"
+            name:"wackywizard3"
         },
         validationSchema: validationSchema,
         onSubmit: (values) => {
@@ -78,15 +78,15 @@ const SignUpForm = () => {
                 <form onSubmit={formik.handleSubmit}>
                     <TextField
                         fullWidth
-                        id="email"
-                        name="email"
-                        label="Email"
-                        value={formik.values.email}
+                        id="username"
+                        name="username"
+                        label="Username"
+                        value={formik.values.username}
                         onChange={formik.handleChange}
                         error={
-                            formik.touched.email && Boolean(formik.errors.email)
+                            formik.touched.username && Boolean(formik.errors.username)
                         }
-                        helperText={formik.touched.email && formik.errors.email}
+                        helperText={formik.touched.username && formik.errors.username}
                     />
                     <TextField
                         fullWidth
@@ -106,18 +106,18 @@ const SignUpForm = () => {
                     />
                     <TextField
                         fullWidth
-                        id="displayname"
-                        name="displayname"
-                        label="Displayname"
-                        type="displayname"
-                        value={formik.values.displayname}
+                        id="name"
+                        name="name"
+                        label="Display name"
+                        type="name"
+                        value={formik.values.name}
                         onChange={formik.handleChange}
                         error={
-                            formik.touched.displayname &&
-                            Boolean(formik.errors.displayname)
+                            formik.touched.name &&
+                            Boolean(formik.errors.name)
                         }
                         helperText={
-                            formik.touched.displayname && formik.errors.displayname
+                            formik.touched.displayName && formik.errors.displayName
                         }
                     />
                     <Button
