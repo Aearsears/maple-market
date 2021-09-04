@@ -12,7 +12,7 @@ import "tailwindcss/tailwind.css";
 
 const SignUpForm = () => {
     const validationSchema = yup.object({
-        email: yup
+        username: yup
             .string("Enter your email")
             .email("Enter a valid email")
             .required("Email is required"),
@@ -20,7 +20,7 @@ const SignUpForm = () => {
             .string("Enter your password")
             .min(8, "Password should be of minimum 8 characters length")
             .required("Password is required"),
-            displayName: yup
+        name: yup
             .string("Enter your display name")
             .min(1, "display name should be at least one character")
             .required("display name is required"),
