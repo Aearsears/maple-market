@@ -40,6 +40,16 @@ class Header extends React.Component {
                                 </a>
                             </Link>
                         </div>
+                        <div className="w-full md:w-auto mb-6 md:mb-0 text-center md:text-right">
+                            <Link href="/user">
+                                <a
+                                    href="#"
+                                    className="inline-block no-underline bg-Ebony text-white text-sm py-2 px-3"
+                                >
+                                    My Account
+                                </a>
+                            </Link>
+                        </div>
                     </div>
                 </div>
             </header>

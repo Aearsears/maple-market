@@ -20,11 +20,16 @@ const SignUpForm = () => {
             .string("Enter your password")
             .min(8, "Password should be of minimum 8 characters length")
             .required("Password is required"),
+            displayName: yup
+            .string("Enter your display name")
+            .min(1, "display name should be at least one character")
+            .required("display name is required"),
     });
     const formik = useFormik({
         initialValues: {
             email: "johnsmith@gmail.com",
             password: "password",
+            displayName:"wackywizard3"
         },
         validationSchema: validationSchema,
         onSubmit: (values) => {
@@ -33,7 +38,7 @@ const SignUpForm = () => {
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(values, null, 2),
             };
-            fetch("http://localhost:4000/signup", requestOptions)
+            fetch("https://maple-market-db.herokuapp.com/signup", requestOptions)
                 .then(async (response) => {
                     const data = await response.json();
 
@@ -97,6 +102,22 @@ const SignUpForm = () => {
                         }
                         helperText={
                             formik.touched.password && formik.errors.password
+                        }
+                    />
+                    <TextField
+                        fullWidth
+                        id="displayname"
+                        name="displayname"
+                        label="Displayname"
+                        type="displayname"
+                        value={formik.values.displayname}
+                        onChange={formik.handleChange}
+                        error={
+                            formik.touched.displayname &&
+                            Boolean(formik.errors.displayname)
+                        }
+                        helperText={
+                            formik.touched.displayname && formik.errors.displayname
                         }
                     />
                     <Button
