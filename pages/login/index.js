@@ -43,6 +43,7 @@ const SignUpForm = () => {
                         const error = (data && data.message) || response.status;
                         return Promise.reject(error);
                     }
+                    return data;
                 })
                 .catch((error) => {
                     console.error("There was an error!", error);
