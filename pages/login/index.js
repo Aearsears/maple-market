@@ -8,6 +8,7 @@ import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
 import { Typography } from "@material-ui/core";
 import Head from "next/head";
+import Router from 'next/router'
 import "tailwindcss/tailwind.css";
 
 const SignUpForm = () => {
@@ -30,23 +31,30 @@ const SignUpForm = () => {
         onSubmit: (values) => {
             const requestOptions = {
                 method: "POST",
-                headers: { "Content-Type": "application/json" },
+                headers: { "Content-Type": "application/json"},
                 body: JSON.stringify(values, null, 2),
+                credentials:'include'
             };
-            fetch("https://maple-market-db.herokuapp.com/login", requestOptions)
+            fetch("http://localhost:4000/login", requestOptions)
                 .then(async (response) => {
-                    const data = await response.json();
-
+                    const data = await response;
+                    console.log(data);
                     // check for error response
                     if (!response.ok) {
                         // get error message from body or default to response status
                         const error = (data && data.message) || response.status;
                         return Promise.reject(error);
                     }
-                    return data;
+                    if(response.status===200){
+                        Router.push('/');
+                    }
+                    else{
+                        throw new Error(await response.text());
+                    }
                 })
                 .catch((error) => {
                     console.error("There was an error!", error);
+                    console.error("There was an error: stack: ", error.stack);
                 });
         },
     });

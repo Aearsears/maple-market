@@ -27,15 +27,24 @@ const UserPage = (props) => {
                 {" "}
                 Welcome to MapleMarket!{" "}
             </h1>
-            <h1>{this.props.userdata.username}</h1>
+            <h1>{props.userdata.username}</h1>
             <Footer />
         </div>
     );
 };
 
 export async function getServerSideProps(context) {
-    const res = await fetch(`https://maple-market-db.herokuapp.com/user`);
+    const requestOptions = {
+        method:"GET",
+        headers: { "Content-Type": "application/json","cookie":context.req.headers.cookie},
+        credentials:'include',
+    };
+    // const cookies = context.req.headers.cookie;
+    // console.log(cookies);
+    const res = await fetch(`http://localhost:4000/user`,requestOptions);
     const userdata = await res.json();
+    console.log("RESPONSE FROM FRONT END: ");
+    console.log(userdata);
 
     if (!userdata) {
         return {

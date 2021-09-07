@@ -38,7 +38,7 @@ const SignUpForm = () => {
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(values, null, 2),
             };
-            fetch("https://maple-market-db.herokuapp.com/signup", requestOptions)
+            fetch("http://localhost:4000/signup", requestOptions)
                 .then(async (response) => {
                     const data = await response.json();
 
@@ -48,9 +48,11 @@ const SignUpForm = () => {
                         const error = (data && data.message) || response.status;
                         return Promise.reject(error);
                     }
+                    return(data);
                 })
                 .catch((error) => {
                     console.error("There was an error!", error);
+                    console.error("There was an error!", error.stack);
                 });
         },
     });

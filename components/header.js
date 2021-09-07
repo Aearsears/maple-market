@@ -1,9 +1,38 @@
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
+import {Button} from "@material-ui/core";
 import mushPic from "../public/mushroom.png";
+import Router from 'next/router';
 
 class Header extends React.Component {
+    onHandle = () =>{
+        const requestOptions = {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            credentials:'include'
+        };
+        fetch("http://localhost:4000/logout", requestOptions)
+            .then(async (response) => {
+                const data = await response;
+
+                // check for error response
+                if (!response.ok) {
+                    // get error message from body or default to response status
+                    const error = (data && data.message) || response.status;
+                    return Promise.reject(error);
+                }
+                if(response.status===200){
+                    Router.push('/');
+                }
+                else{
+                    throw new Error(await response.text());
+                }
+            })
+            .catch((error) => {
+                console.error("There was an error in logout fetch!", error);
+            });
+    }
     render() {
         return (
             <header className="w-full px-6 bg-Desert-Sand">
@@ -49,6 +78,14 @@ class Header extends React.Component {
                                     My Account
                                 </a>
                             </Link>
+                        </div>
+                        <div className="w-full md:w-auto mb-6 md:mb-0 text-center md:text-right">
+                                <Button className="inline-block no-underline bg-Ebony text-white text-sm py-2 px-3" onClick={this.onHandle}
+                                >
+                                Logout
+                               </Button>
+
+
                         </div>
                     </div>
                 </div>
