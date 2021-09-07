@@ -80,7 +80,7 @@ function ItemPricePage(props) {
             </p>
             <Image
                 src={
-                    "http://localhost:4000/api/item/" +
+                    "https://maplemarket.herokuapp.com//api/item/" +
                     props.itemdata.id +
                     "/img"
                 }
@@ -105,12 +105,12 @@ function ItemPricePage(props) {
 
 export async function getServerSideProps(context) {
     const res = await fetch(
-        `http://localhost:4000/api/item/${context.params.id}`
+        `https://maplemarket.herokuapp.com/api/item/${context.params.id}`
     );
     const itemdata = await res.json();
 
     const res2 = await fetch(
-        `http://localhost:4000/api/item/${context.params.id}/pricehist`
+        `https://maplemarket.herokuapp.com/api/item/${context.params.id}/pricehist`
     );
     const pricedata = await res2.json();
 
