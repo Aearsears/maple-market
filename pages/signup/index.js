@@ -38,7 +38,7 @@ const SignUpForm = () => {
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(values, null, 2),
             };
-            fetch("https://maplemarket.herokuapp.com/signup", requestOptions)
+            fetch("https://maple-market-db.herokuapp.com/signup", requestOptions)
                 .then(async (response) => {
                     const data = await response.json();
 

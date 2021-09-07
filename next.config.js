@@ -1,7 +1,7 @@
 // next.config.js
 module.exports = {
   images: {
-    domains: ['https://maplemarket.herokuapp.com'],
+    domains: ['https://maple-market-db.herokuapp.com'],
   },
   async redirects() {
     return [

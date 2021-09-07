@@ -41,7 +41,7 @@ export async function getServerSideProps(context) {
     };
     // const cookies = context.req.headers.cookie;
     // console.log(cookies);
-    const res = await fetch(`https://maplemarket.herokuapp.com/user`,requestOptions);
+    const res = await fetch(`https://maple-market-db.herokuapp.com/user`,requestOptions);
     const userdata = await res.json();
     console.log("RESPONSE FROM FRONT END: ");
     console.log(userdata);

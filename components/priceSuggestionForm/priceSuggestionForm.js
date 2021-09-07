@@ -46,7 +46,7 @@ class PriceSuggestionForm extends React.Component {
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(body, null, 2),
         };
-        fetch("https://maplemarket.herokuapp.com/api/item/pricesuggestion", requestOptions)
+        fetch("https://maple-market-db.herokuapp.com/api/item/pricesuggestion", requestOptions)
             .then(async (response) => {
                 const data = await response.json();
 

@@ -37,7 +37,7 @@ class ItemCard extends React.Component {
       </Typography> */}
                             <Image
                                 src={
-                                    "https://maplemarket.herokuapp.com/api/item/" +
+                                    "https://maple-market-db.herokuapp.com/api/item/" +
                                     this.props.id +
                                     "/img"
                                 }
@@ -67,7 +67,7 @@ class ItemCard extends React.Component {
       </Typography> */}
                             <Image
                                 src={
-                                    "https://maplemarket.herokuapp.com/api/item/" +
+                                    "https://maple-market-db.herokuapp.com/api/item/" +
                                     this.props.id +
                                     "/img"
                                 }

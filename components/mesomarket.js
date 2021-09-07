@@ -19,7 +19,7 @@ class Mesomarket extends React.Component {
     };
   }
   componentDidMount() {
-    fetch("https://maplemarket.herokuapp.com/mesomarket", {
+    fetch("https://maple-market-db.herokuapp.com/mesomarket", {
       headers: {
         "Content-Type": "application/json",
         Accept: "application/json",

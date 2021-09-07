@@ -12,7 +12,7 @@ class Header extends React.Component {
             headers: { "Content-Type": "application/json" },
             credentials:'include'
         };
-        fetch("https://maplemarket.herokuapp.com/logout", requestOptions)
+        fetch("https://maple-market-db.herokuapp.com/logout", requestOptions)
             .then(async (response) => {
                 const data = await response;
 
