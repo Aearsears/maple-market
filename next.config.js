@@ -10,6 +10,10 @@ module.exports = {
         destination: '/prices',
         permanent: true,
       },
+      {
+        source:'/api/:slug',
+        destination:'https://maple-market-db.herokuapp.com/:slug'
+      }
     ]
   },
 };
