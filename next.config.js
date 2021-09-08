@@ -12,7 +12,8 @@ module.exports = {
       },
       {
         source:'/api/:slug',
-        destination:'https://maple-market-db.herokuapp.com/:slug'
+        destination:'https://maple-market-db.herokuapp.com/:slug',
+        permanent: true,
       }
     ]
   },
