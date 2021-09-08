@@ -35,7 +35,7 @@ const SignUpForm = () => {
                 body: JSON.stringify(values, null, 2),
                 credentials:'include'
             };
-            fetch("https://maple-market-db.herokuapp.com/api/login", requestOptions)
+            fetch("/api/login", requestOptions)
                 .then(async (response) => {
                     const data = await response;
                     console.log(data);
