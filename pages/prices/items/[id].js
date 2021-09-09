@@ -68,20 +68,20 @@ function ItemPricePage(props) {
                 Welcome to MapleMarket!{" "}
             </h1>
 
-            <p>{props.itemdata.name}</p>
-            <p>{props.itemdata.price} Mesos</p>
+            <p>{props.itemdata[0].name}</p>
+            <p>{props.itemdata[0].price} Mesos</p>
             <p>
-                {props.itemdata.pchange} (
+                {props.itemdata[0].pchange} (
                 {(
-                    (props.itemdata.pchange / props.itemdata.price) *
+                    (props.itemdata[0].pchange / props.itemdata[0].price) *
                     100
                 ).toFixed(2) + "%"}
                 )
             </p>
             <Image
                 src={
-                    "https://maple-market-db.herokuapp.com//api/item/" +
-                    props.itemdata.id +
+                    "https://maple-market-db.herokuapp.com/api/item/" +
+                    props.itemdata[0].id +
                     "/img"
                 }
                 alt={props.name}
