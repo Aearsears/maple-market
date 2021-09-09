@@ -4,6 +4,7 @@ import Navbar from "../../../components/navbar";
 import Header from "../../../components/header";
 import Footer from "../../../components/footer";
 import Button from "@material-ui/core/Button";
+import { Typography } from "@material-ui/core";
 import Head from "next/head";
 import Link from "next/link";
 import ItemCard from "../../../components/itemCard";
@@ -25,8 +26,6 @@ function ItemPricePage(props) {
     if (check > 0) {
         graph = (
             <div>
-                <p>{props.pricedata[0].Date}</p>
-                <p>{props.pricedata[0]["Adj Close"]}</p>
                 <LineChart
                     width={1000}
                     height={300}
@@ -44,6 +43,8 @@ function ItemPricePage(props) {
                     <YAxis />
                     <Tooltip />
                 </LineChart>
+                <p>{props.pricedata[0].Date}</p>
+                <p>{props.pricedata[0]["Adj Close"]}</p>
             </div>
         );
     } else {
@@ -63,40 +64,60 @@ function ItemPricePage(props) {
             </Head>
             <Header />
             <Navbar />
-            <h1 className="text-center py-2 bg-Artichoke">
-                {" "}
-                Welcome to MapleMarket!{" "}
-            </h1>
+            <div>
+                <h1 className="text-center py-2 bg-Artichoke">
+                    {" "}
+                    Welcome to MapleMarket!{" "}
+                </h1>
+            </div>
 
-            <p>{props.itemdata.name}</p>
-            <p>{props.itemdata.price} Mesos</p>
-            <p>
-                {props.itemdata.pchange} (
-                {(
-                    (props.itemdata.pchange / props.itemdata.price) *
-                    100
-                ).toFixed(2) + "%"}
-                )
-            </p>
-            <Image
-                src={
-                    "http://localhost:4000/api/item/" +
-                    props.itemdata.id +
-                    "/img"
-                }
-                alt={props.name}
-                width={64}
-                height={64}
-            />
-            {graph}
-            <Link href="/prices/suggestion" passHref>
-            <Button
-                variant="contained"
-                className="bg-Artichoke"
-                >
-                Make a price suggestion
-            </Button>
-            </Link>
+            <div className="itemcontainer m-4">
+                <div className="iteminfo flex m-4">
+                    <Image
+                        src={
+                            "http://localhost:4000/api/item/" +
+                            props.itemdata.id +
+                            "/img"
+                        }
+                        alt={props.name}
+                        width={64}
+                        height={64}
+                    />
+                    <div className="itemdatadiv">
+                        <Typography variant="h4">
+                            {props.itemdata.name}
+                        </Typography>
+                        <div className="flex pricedata">
+                            <Typography variant="h6">
+                                {props.itemdata.price} Mesos&nbsp;&nbsp;
+                            </Typography>
+                            <Typography
+                                variant="h6"
+                                className={
+                                    props.itemdata.pchange > 0
+                                        ? "text-green-900"
+                                        : "text-red-900"
+                                }
+                            >
+                                {props.itemdata.pchange}(
+                                {(
+                                    (props.itemdata.pchange /
+                                        props.itemdata.price) *
+                                    100
+                                ).toFixed(2) + "%"}
+                                )
+                            </Typography>
+                        </div>
+                    </div>
+                </div>
+
+                {graph}
+                <Link href="/prices/suggestion" passHref>
+                    <Button variant="contained" className="bg-Artichoke">
+                        Make a price suggestion
+                    </Button>
+                </Link>
+            </div>
 
             <Footer />
         </div>
