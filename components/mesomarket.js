@@ -50,9 +50,11 @@ class Mesomarket extends React.Component {
         const { error, isLoaded, items } = this.state;
         if (error) {
             return <div>Error:{error.message}</div>;
-        } else if (!isLoaded) {
+        }
+        else if (!isLoaded) {
             return <div>Loading...</div>;
-        } else {
+        }
+        else {
             return (
                 <TableContainer component={Paper}>
                     <Table aria-label="simple table">

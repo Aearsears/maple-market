@@ -46,7 +46,8 @@ function ItemPricePage (props) {
                 </LineChart>
             </div>
         );
-    } else {
+    }
+    else {
         graph = <div>No price data</div>;
     }
     return (

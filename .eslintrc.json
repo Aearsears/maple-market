@@ -1,0 +1,28 @@
+{
+    "env": {
+        "browser": true,
+        "es2021": true,
+        "node": true
+    },
+    "extends": [
+        "plugin:react/recommended",
+        "standard"
+    ],
+    "parserOptions": {
+        "ecmaFeatures": {
+            "jsx": true
+        },
+        "ecmaVersion": 12,
+        "sourceType": "module"
+    },
+    "plugins": [
+        "react"
+    ],
+    "rules": {
+        "no-unused-vars":"warn",
+        "semi":[2,"always"],
+        "indent":["warn",4],
+        "react/prop-types": "off",
+        "brace-style":[2,"stroustrup"]
+    }
+}

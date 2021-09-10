@@ -47,7 +47,8 @@ const SignUpForm = () => {
                     }
                     if (response.status === 200) {
                         Router.push('/');
-                    } else {
+                    }
+                    else {
                         throw new Error(await response.text());
                     }
                 })
