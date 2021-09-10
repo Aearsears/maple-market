@@ -1,35 +1,35 @@
-import React, { useState, useEffect } from "react";
-import ItemGrid from "../itemgrid";
-import { Button } from "@material-ui/core";
-import "tailwindcss/tailwind.css";
+import React, { useState, useEffect } from 'react';
+import ItemGrid from '../itemgrid';
+import { Button } from '@material-ui/core';
+import 'tailwindcss/tailwind.css';
 
-//first step choose your item
-//second step fill in details, price, proof(pictures?) and submit
+// first step choose your item
+// second step fill in details, price, proof(pictures?) and submit
 
 class ChooseItem extends React.Component {
-    constructor(props) {
+    constructor (props) {
         super(props);
         this.state = {
             step: 0,
             error: null,
             isLoaded: false,
-            items: [],
+            items: []
         };
     }
 
-    render(props) {
-        return(
+    render (props) {
+        return (
             <div>
                 <div>Choose an item</div>
                 <ItemGrid
                     items={this.props.items}
-                    title={"All items"}
-                    type={"suggestion"}
+                    title={'All items'}
+                    type={'suggestion'}
                     handleItemChange={this.props.handleItemChange}
-                    />
+                />
             </div>
-                    );
-    };
+        );
+    }
 }
 
 export default ChooseItem;

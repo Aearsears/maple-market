@@ -1,26 +1,27 @@
-import React, { useState, useEffect } from "react";
-import Navbar from "../../components/navbar";
-import Header from "../../components/header";
-import Footer from "../../components/footer";
-import ItemGrid from "../../components/itemgrid";
-import Head from "next/head";
-import "tailwindcss/tailwind.css";
+import React, { useState, useEffect } from 'react';
+import Navbar from '../../components/navbar';
+import Header from '../../components/header';
+import Footer from '../../components/footer';
+import ItemGrid from '../../components/itemgrid';
+import Head from 'next/head';
+import 'tailwindcss/tailwind.css';
 
 class Prices extends React.Component {
-    constructor(props) {
+    constructor (props) {
         super(props);
         this.state = {
             error: null,
             isLoaded: false,
-            items: [],
+            items: []
         };
     }
-    componentDidMount() {
-        fetch("https://maple-market-db.herokuapp.com/test", {
+
+    componentDidMount () {
+        fetch('https://maple-market-db.herokuapp.com/test', {
             headers: {
-                "Content-Type": "application/json",
-                Accept: "application/json",
-            },
+                'Content-Type': 'application/json',
+                Accept: 'application/json'
+            }
         })
             .then((response) => {
                 return response.json();
@@ -30,18 +31,19 @@ class Prices extends React.Component {
                     // console.log(typeof data);
                     this.setState({
                         isLoaded: true,
-                        items: Object.values(data),
+                        items: Object.values(data)
                     });
                 },
                 (error) => {
                     this.setState({
                         isLoaded: true,
-                        error,
+                        error
                     });
                 }
             );
     }
-    render() {
+
+    render () {
         const { error, isLoaded, items } = this.state;
         if (error) {
             return <div>Error:{error.message}</div>;
@@ -69,10 +71,16 @@ class Prices extends React.Component {
                     <Header />
                     <Navbar />
                     <h1 className="text-center py-2 bg-Artichoke">
-                        {" "}
-                        Welcome to MapleMarket!{" "}
+                        {' '}
+                        Welcome to MapleMarket!{' '}
                     </h1>
-                    <ItemGrid items={items} title={"CHSNGE THIS TO HAVE CARDS OF EACH TYPE OF ITEM IN MAPLESOTRY, ETC, USE, CASH, EQUIPS"} type={"prices"} />
+                    <ItemGrid
+                        items={items}
+                        title={
+                            'CHSNGE THIS TO HAVE CARDS OF EACH TYPE OF ITEM IN MAPLESOTRY, ETC, USE, CASH, EQUIPS'
+                        }
+                        type={'prices'}
+                    />
                     <Footer />
                 </div>
             );

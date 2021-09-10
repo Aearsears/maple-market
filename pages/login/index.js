@@ -1,41 +1,41 @@
-import React, { useState, useEffect } from "react";
-import Navbar from "../../components/navbar";
-import Header from "../../components/header";
-import Footer from "../../components/footer";
-import { useFormik } from "formik";
-import * as yup from "yup";
-import Button from "@material-ui/core/Button";
-import TextField from "@material-ui/core/TextField";
-import { Typography } from "@material-ui/core";
-import Head from "next/head";
-import Router from 'next/router'
-import "tailwindcss/tailwind.css";
+import React, { useState, useEffect } from 'react';
+import Navbar from '../../components/navbar';
+import Header from '../../components/header';
+import Footer from '../../components/footer';
+import { useFormik } from 'formik';
+import * as yup from 'yup';
+import Button from '@material-ui/core/Button';
+import TextField from '@material-ui/core/TextField';
+import { Typography } from '@material-ui/core';
+import Head from 'next/head';
+import Router from 'next/router';
+import 'tailwindcss/tailwind.css';
 
 const SignUpForm = () => {
     const validationSchema = yup.object({
         email: yup
-            .string("Enter your email")
-            .email("Enter a valid email")
-            .required("Email is required"),
+            .string('Enter your email')
+            .email('Enter a valid email')
+            .required('Email is required'),
         password: yup
-            .string("Enter your password")
-            .min(8, "Password should be of minimum 8 characters length")
-            .required("Password is required"),
+            .string('Enter your password')
+            .min(8, 'Password should be of minimum 8 characters length')
+            .required('Password is required')
     });
     const formik = useFormik({
         initialValues: {
-            email: "johnsmith@gmail.com",
-            password: "password",
+            email: 'johnsmith@gmail.com',
+            password: 'password'
         },
         validationSchema: validationSchema,
         onSubmit: (values) => {
             const requestOptions = {
-                method: "POST",
-                headers: { "Content-Type": "application/json"},
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(values, null, 2),
-                credentials:'include'
+                credentials: 'include'
             };
-            fetch("/api/login", requestOptions)
+            fetch('/api/login', requestOptions)
                 .then(async (response) => {
                     const data = await response;
                     console.log(data);
@@ -45,18 +45,17 @@ const SignUpForm = () => {
                         const error = (data && data.message) || response.status;
                         return Promise.reject(error);
                     }
-                    if(response.status===200){
+                    if (response.status === 200) {
                         Router.push('/');
-                    }
-                    else{
+                    } else {
                         throw new Error(await response.text());
                     }
                 })
                 .catch((error) => {
-                    console.error("There was an error!", error);
-                    console.error("There was an error: stack: ", error.stack);
+                    console.error('There was an error!', error);
+                    console.error('There was an error: stack: ', error.stack);
                 });
-        },
+        }
     });
 
     return (
@@ -74,13 +73,11 @@ const SignUpForm = () => {
             <Header />
             <Navbar />
             <h1 className="text-center py-2 bg-Artichoke">
-                {" "}
-                Welcome to MapleMarket!{" "}
+                {' '}
+                Welcome to MapleMarket!{' '}
             </h1>
             <div>
-                <Typography variant="h1">
-                    Login
-                </Typography>
+                <Typography variant="h1">Login</Typography>
                 <form onSubmit={formik.handleSubmit}>
                     <TextField
                         fullWidth

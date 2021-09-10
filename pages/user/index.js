@@ -1,12 +1,12 @@
-import React from "react";
-import Navbar from "../../components/navbar";
-import Header from "../../components/header";
-import Footer from "../../components/footer";
-import Button from "@material-ui/core/Button";
-import TextField from "@material-ui/core/TextField";
-import { Typography } from "@material-ui/core";
-import Head from "next/head";
-import "tailwindcss/tailwind.css";
+import React from 'react';
+import Navbar from '../../components/navbar';
+import Header from '../../components/header';
+import Footer from '../../components/footer';
+import Button from '@material-ui/core/Button';
+import TextField from '@material-ui/core/TextField';
+import { Typography } from '@material-ui/core';
+import Head from 'next/head';
+import 'tailwindcss/tailwind.css';
 
 const UserPage = (props) => {
     return (
@@ -24,8 +24,8 @@ const UserPage = (props) => {
             <Header />
             <Navbar />
             <h1 className="text-center py-2 bg-Artichoke">
-                {" "}
-                Welcome to MapleMarket!{" "}
+                {' '}
+                Welcome to MapleMarket!{' '}
             </h1>
             <h1>{props.userdata.username}</h1>
             <Footer />
@@ -33,27 +33,33 @@ const UserPage = (props) => {
     );
 };
 
-export async function getServerSideProps(context) {
+export async function getServerSideProps (context) {
     const requestOptions = {
-        method:"GET",
-        headers: { "Content-Type": "application/json","cookie":context.req.headers.cookie},
-        credentials:'include',
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
+            cookie: context.req.headers.cookie
+        },
+        credentials: 'include'
     };
     // const cookies = context.req.headers.cookie;
     // console.log(cookies);
-    const res = await fetch(`https://maple-market-db.herokuapp.com/user`,requestOptions);
+    const res = await fetch(
+        'https://maple-market-db.herokuapp.com/user',
+        requestOptions
+    );
     const userdata = await res.json();
-    console.log("RESPONSE FROM FRONT END: ");
+    console.log('RESPONSE FROM FRONT END: ');
     console.log(userdata);
 
     if (!userdata) {
         return {
-            notFound: true,
+            notFound: true
         };
     }
 
     return {
-        props: { userdata }, // will be passed to the page component as props
+        props: { userdata } // will be passed to the page component as props
     };
 }
 

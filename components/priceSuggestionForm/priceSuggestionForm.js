@@ -1,14 +1,14 @@
-import React, { useState, useEffect } from "react";
-import ItemGrid from "../itemgrid";
-import ItemCard from "../itemCard";
-import { Button, TextField } from "@material-ui/core";
-import "tailwindcss/tailwind.css";
-import ChooseItem from "./chooseItem";
-import ProvideDetails from "./provideDetails";
+import React, { useState, useEffect } from 'react';
+import ItemGrid from '../itemgrid';
+import ItemCard from '../itemCard';
+import { Button, TextField } from '@material-ui/core';
+import 'tailwindcss/tailwind.css';
+import ChooseItem from './chooseItem';
+import ProvideDetails from './provideDetails';
 
 //first step choose your item
 //second step fill in details, price, proof(pictures?) and submit
-// if on item info page, and click make a suggestion, should already select the item and go to step 2 of the "form"
+// if on item info page, and click make a suggestion, should already select the item and go to step 2 of the 'form'
 
 class PriceSuggestionForm extends React.Component {
     constructor(props) {
@@ -19,8 +19,8 @@ class PriceSuggestionForm extends React.Component {
             isLoaded: false,
             items: [],
             item: {},
-            details: "",
-            suggPrice: "",
+            details: '',
+            suggPrice: '',
         };
         this.handleChange = this.handleChange.bind(this);
         this.handleItemChange = this.handleItemChange.bind(this);
@@ -40,13 +40,13 @@ class PriceSuggestionForm extends React.Component {
         // console.log(this.state.suggPrice);
         const one = this.state.details;
         const two = this.state.suggPrice;
-        const body = { "details": one, "suggPrice":two };
+        const body = { 'details': one, 'suggPrice':two };
         const requestOptions = {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(body, null, 2),
         };
-        fetch("https://maple-market-db.herokuapp.com/api/item/pricesuggestion", requestOptions)
+        fetch('https://maple-market-db.herokuapp.com/api/item/pricesuggestion', requestOptions)
             .then(async (response) => {
                 const data = await response.json();
 
@@ -58,7 +58,7 @@ class PriceSuggestionForm extends React.Component {
                 }
             })
             .catch((error) => {
-                console.error("There was an error!", error);
+                console.error('There was an error!', error);
             });
         this.nextStep();
     };

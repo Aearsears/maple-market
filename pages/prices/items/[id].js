@@ -1,32 +1,32 @@
-import { useRouter } from "next/router";
-import React from "react";
-import Navbar from "../../../components/navbar";
-import Header from "../../../components/header";
-import Footer from "../../../components/footer";
-import Button from "@material-ui/core/Button";
-import Head from "next/head";
-import Link from "next/link";
-import ItemCard from "../../../components/itemCard";
-import Image from "next/image";
+import { useRouter } from 'next/router';
+import React from 'react';
+import Navbar from '../../../components/navbar';
+import Header from '../../../components/header';
+import Footer from '../../../components/footer';
+import Button from '@material-ui/core/Button';
+import Head from 'next/head';
+import Link from 'next/link';
+import ItemCard from '../../../components/itemCard';
+import Image from 'next/image';
 import {
     LineChart,
     Line,
     CartesianGrid,
     XAxis,
     YAxis,
-    Tooltip,
-} from "recharts";
+    Tooltip
+} from 'recharts';
 
-function ItemPricePage(props) {
+function ItemPricePage (props) {
     const router = useRouter();
     let graph;
-    let check = Object.keys(props.pricedata).length;
+    const check = Object.keys(props.pricedata).length;
     // console.log("LOOK HERE:"+check);
     if (check > 0) {
         graph = (
             <div>
                 <p>{props.pricedata[0].Date}</p>
-                <p>{props.pricedata[0]["Adj Close"]}</p>
+                <p>{props.pricedata[0]['Adj Close']}</p>
                 <LineChart
                     width={1000}
                     height={300}
@@ -64,8 +64,8 @@ function ItemPricePage(props) {
             <Header />
             <Navbar />
             <h1 className="text-center py-2 bg-Artichoke">
-                {" "}
-                Welcome to MapleMarket!{" "}
+                {' '}
+                Welcome to MapleMarket!{' '}
             </h1>
 
             <p>{props.itemdata[0].name}</p>
@@ -75,14 +75,14 @@ function ItemPricePage(props) {
                 {(
                     (props.itemdata[0].pchange / props.itemdata[0].price) *
                     100
-                ).toFixed(2) + "%"}
+                ).toFixed(2) + '%'}
                 )
             </p>
             <Image
                 src={
-                    "https://maple-market-db.herokuapp.com/api/item/" +
+                    'https://maple-market-db.herokuapp.com/api/item/' +
                     props.itemdata[0].id +
-                    "/img"
+                    '/img'
                 }
                 alt={props.name}
                 width={64}
@@ -90,12 +90,9 @@ function ItemPricePage(props) {
             />
             {graph}
             <Link href="/prices/suggestion" passHref>
-            <Button
-                variant="contained"
-                className="bg-Artichoke"
-                >
-                Make a price suggestion
-            </Button>
+                <Button variant="contained" className="bg-Artichoke">
+                    Make a price suggestion
+                </Button>
             </Link>
 
             <Footer />
@@ -103,7 +100,7 @@ function ItemPricePage(props) {
     );
 }
 
-export async function getServerSideProps(context) {
+export async function getServerSideProps (context) {
     const res = await fetch(
         `https://maple-market-db.herokuapp.com/api/item/${context.params.id}`
     );
@@ -116,12 +113,12 @@ export async function getServerSideProps(context) {
 
     if (!itemdata) {
         return {
-            notFound: true,
+            notFound: true
         };
     }
 
     return {
-        props: { itemdata, pricedata }, // will be passed to the page component as props
+        props: { itemdata, pricedata } // will be passed to the page component as props
     };
 }
 

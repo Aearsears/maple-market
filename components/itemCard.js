@@ -1,13 +1,13 @@
-import { withStyles } from "@material-ui/core/styles";
-import Card from "@material-ui/core/Card";
-import CardActions from "@material-ui/core/CardActions";
-import CardContent from "@material-ui/core/CardContent";
-import Button from "@material-ui/core/Button";
-import Typography from "@material-ui/core/Typography";
-import React from "react";
-import Image from "next/image";
-import ButtonBase from "@material-ui/core/ButtonBase";
-import Link from "next/link";
+import { withStyles } from '@material-ui/core/styles';
+import Card from '@material-ui/core/Card';
+import CardActions from '@material-ui/core/CardActions';
+import CardContent from '@material-ui/core/CardContent';
+import Button from '@material-ui/core/Button';
+import Typography from '@material-ui/core/Typography';
+import React from 'react';
+import Image from 'next/image';
+import ButtonBase from '@material-ui/core/ButtonBase';
+import Link from 'next/link';
 
 class ItemCard extends React.Component {
     constructor(props) {
@@ -17,29 +17,35 @@ class ItemCard extends React.Component {
         };
     }
     onClick = (event) => {
-        console.log("working!")
-        event.preventDefault()
-      }
+        console.log('working!');
+        event.preventDefault();
+    };
 
     render(props) {
         let card;
-        if (this.props.type == "suggestion") {
-            card =
-            (
-                <Card className={"bg-transparent"}>
-                    <ButtonBase className="h-full w-full" onClick= {() => (typeof(this.props.handleItemChange) === "function" ? this.props.handleItemChange(this) : void(0))}>
-                        <CardContent className="h-full w-full">
-                            {/* <Typography variant="body2" component="h6">
+        if (this.props.type == 'suggestion') {
+            card = (
+                <Card className={'bg-transparent'}>
+                    <ButtonBase
+                        className='h-full w-full'
+                        onClick={() =>
+                            typeof this.props.handleItemChange === 'function'
+                                ? this.props.handleItemChange(this)
+                                : void 0
+                        }
+                    >
+                        <CardContent className='h-full w-full'>
+                            {/* <Typography variant='body2' component='h6'>
           {this.props.name}
       </Typography>
-      <Typography className="typo" color="textSecondary">
+      <Typography className='typo' color='textSecondary'>
           {this.props.price}
       </Typography> */}
                             <Image
                                 src={
-                                    "https://maple-market-db.herokuapp.com/api/item/" +
+                                    'https://maple-market-db.herokuapp.com/api/item/' +
                                     this.props.id +
-                                    "/img"
+                                    '/img'
                                 }
                                 alt={this.props.itemName}
                                 width={64}
@@ -50,26 +56,25 @@ class ItemCard extends React.Component {
                 </Card>
             );
         } else {
-            card =
-            (
+            card = (
                 <Card
                     className={
-                        this.props.pchange > 0 ? "bg-green-300" : "bg-red-300"
+                        this.props.pchange > 0 ? 'bg-green-300' : 'bg-red-300'
                     }
                 >
-                    <ButtonBase className="h-full w-full">
-                        <CardContent className="h-full w-full">
-                            {/* <Typography variant="body2" component="h6">
+                    <ButtonBase className='h-full w-full'>
+                        <CardContent className='h-full w-full'>
+                            {/* <Typography variant='body2' component='h6'>
           {this.props.name}
       </Typography>
-      <Typography className="typo" color="textSecondary">
+      <Typography className='typo' color='textSecondary'>
           {this.props.price}
       </Typography> */}
                             <Image
                                 src={
-                                    "https://maple-market-db.herokuapp.com/api/item/" +
+                                    'https://maple-market-db.herokuapp.com/api/item/' +
                                     this.props.id +
-                                    "/img"
+                                    '/img'
                                 }
                                 alt={this.props.name}
                                 width={64}
@@ -78,9 +83,9 @@ class ItemCard extends React.Component {
                         </CardContent>
                     </ButtonBase>
 
-                    <CardContent className="cursor-pointer">
-                        <Typography variant="subtitle1" align="center">
-                            {this.props.pchange > 0 ? "↑" : "↓"}{" "}
+                    <CardContent className='cursor-pointer'>
+                        <Typography variant='subtitle1' align='center'>
+                            {this.props.pchange > 0 ? '↑' : '↓'}{' '}
                             {this.props.pchange}
                         </Typography>
                     </CardContent>
@@ -89,23 +94,18 @@ class ItemCard extends React.Component {
         }
 
         let link;
-        if(this.props.type == "suggestion"){
-            link="#";
-
-        }
-        else{
-            link = `/prices/items/${encodeURIComponent(this.props.id)}`
+        if (this.props.type == 'suggestion') {
+            link = '#';
+        } else {
+            link = `/prices/items/${encodeURIComponent(this.props.id)}`;
         }
 
-        let linkprops={
-            href:link,
-            onClick:this.onClick
+        let linkprops = {
+            href: link,
+            onClick: this.onClick,
         };
         return (
-            <Link
-                {...linkprops}
-                passHref
-            >
+            <Link {...linkprops} passHref>
                 {card}
             </Link>
         );

@@ -1,22 +1,22 @@
-import React, { useState, useEffect } from "react";
-import Navbar from "../../../components/navbar";
-import Header from "../../../components/header";
-import Footer from "../../../components/footer";
-import Datagrid from "../../../components/datagrid";
-import Head from "next/head";
-import "tailwindcss/tailwind.css";
+import React, { useState, useEffect } from 'react';
+import Navbar from '../../../components/navbar';
+import Header from '../../../components/header';
+import Footer from '../../../components/footer';
+import Datagrid from '../../../components/datagrid';
+import Head from 'next/head';
+import 'tailwindcss/tailwind.css';
 
 class Items extends React.Component {
-    constructor(props) {
+    constructor (props) {
         super(props);
         this.state = {
             error: null,
             isLoaded: false,
-            items: [],
+            items: []
         };
     }
 
-    render() {
+    render () {
         return <div>Loading...</div>;
     }
 }

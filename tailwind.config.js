@@ -1,25 +1,25 @@
 module.exports = {
-  purge: ["./pages/**/*.{js,ts,jsx,tsx}", "./components/**/*.{js,ts,jsx,tsx}"],
-  darkMode: false, // or 'media' or 'class'
-  important: true,
-  theme: {
-    extend: {
-      colors: {
-        transparent: "transparent",
-        current: "currentColor",
-        "Antique-Brass": "#cb997e",
-        "Desert-Sand": "#ddbea9",
-        "Champagne-Pink": "#ffe8d6",
-        "Ash-Gray": "#b7b7a4",
-        Artichoke: "#a5a58d",
-        Ebony: "#6b705c",
-      },
+    purge: ['./pages/**/*.{js,ts,jsx,tsx}', './components/**/*.{js,ts,jsx,tsx}'],
+    darkMode: false, // or 'media' or 'class'
+    important: true,
+    theme: {
+        extend: {
+            colors: {
+                transparent: 'transparent',
+                current: 'currentColor',
+                'Antique-Brass': '#cb997e',
+                'Desert-Sand': '#ddbea9',
+                'Champagne-Pink': '#ffe8d6',
+                'Ash-Gray': '#b7b7a4',
+                Artichoke: '#a5a58d',
+                Ebony: '#6b705c'
+            }
+        }
     },
-  },
-  variants: {
-    extend: {},
-  },
-  plugins: [],
+    variants: {
+        extend: {}
+    },
+    plugins: []
 };
 
 //* Extended Array */
