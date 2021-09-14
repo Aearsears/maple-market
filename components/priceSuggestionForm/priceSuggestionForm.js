@@ -40,7 +40,8 @@ class PriceSuggestionForm extends React.Component {
         // console.log(this.state.suggPrice);
         const one = this.state.details;
         const two = this.state.suggPrice;
-        const body = { "details": one, "suggPrice":two };
+        const three = this.state.item.props.id;
+        const body = { "details": one, "suggPrice":two,"itemId":three,"submittedOn": Date()};
         const requestOptions = {
             method: "POST",
             headers: { "Content-Type": "application/json" },
@@ -72,6 +73,7 @@ class PriceSuggestionForm extends React.Component {
 
     handleItemChange(event) {
         this.nextStep();
+        console.log(event);
         this.setState({ item: event });
     }
 
