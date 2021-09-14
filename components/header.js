@@ -10,9 +10,9 @@ class Header extends React.Component {
         const requestOptions = {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            credentials: 'include',
+            credentials: 'include'
         };
-        fetch('https://maple-market-db.herokuapp.com/logout', requestOptions)
+        fetch('/api/logout', requestOptions)
             .then(async (response) => {
                 const data = await response;
 
@@ -24,7 +24,8 @@ class Header extends React.Component {
                 }
                 if (response.status === 200) {
                     Router.push('/');
-                } else {
+                }
+                else {
                     throw new Error(await response.text());
                 }
             })
@@ -32,7 +33,8 @@ class Header extends React.Component {
                 console.error('There was an error in logout fetch!', error);
             });
     };
-    render() {
+
+    render () {
         return (
             <header className='w-full px-6 bg-Desert-Sand'>
                 <div className='container mx-auto md:flex justify-between items-center'>

@@ -10,18 +10,19 @@ import ButtonBase from '@material-ui/core/ButtonBase';
 import Link from 'next/link';
 
 class ItemCard extends React.Component {
-    constructor(props) {
+    constructor (props) {
         super(props);
         this.state = {
-            a: [],
+            a: []
         };
     }
+
     onClick = (event) => {
         console.log('working!');
         event.preventDefault();
     };
 
-    render(props) {
+    render (props) {
         let card;
         if (this.props.type == 'suggestion') {
             card = (
@@ -55,7 +56,8 @@ class ItemCard extends React.Component {
                     </ButtonBase>
                 </Card>
             );
-        } else {
+        }
+        else {
             card = (
                 <Card
                     className={
@@ -96,13 +98,14 @@ class ItemCard extends React.Component {
         let link;
         if (this.props.type == 'suggestion') {
             link = '#';
-        } else {
+        }
+        else {
             link = `/prices/items/${encodeURIComponent(this.props.id)}`;
         }
 
-        let linkprops = {
+        const linkprops = {
             href: link,
-            onClick: this.onClick,
+            onClick: this.onClick
         };
         return (
             <Link {...linkprops} passHref>

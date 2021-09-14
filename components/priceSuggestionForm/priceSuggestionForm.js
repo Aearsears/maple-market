@@ -6,12 +6,12 @@ import 'tailwindcss/tailwind.css';
 import ChooseItem from './chooseItem';
 import ProvideDetails from './provideDetails';
 
-//first step choose your item
-//second step fill in details, price, proof(pictures?) and submit
-// if on item info page, and click make a suggestion, should already select the item and go to step 2 of the 'form'
+// first step choose your item
+// second step fill in details, price, proof(pictures?) and submit
+// if on item info page, and click make a suggestion, should already select the item and go to step 2 of the "form"
 
 class PriceSuggestionForm extends React.Component {
-    constructor(props) {
+    constructor (props) {
         super(props);
         this.state = {
             step: 0,
@@ -20,7 +20,7 @@ class PriceSuggestionForm extends React.Component {
             items: [],
             item: {},
             details: '',
-            suggPrice: '',
+            suggPrice: ''
         };
         this.handleChange = this.handleChange.bind(this);
         this.handleItemChange = this.handleItemChange.bind(this);
@@ -30,21 +30,25 @@ class PriceSuggestionForm extends React.Component {
         const step = this.state.step;
         this.setState({ step: step - 1 });
     };
+
     nextStep = () => {
         const step = this.state.step;
         this.setState({ step: step + 1 });
     };
+
     submitSugg = () => {
         // send the post request
         // console.log(this.state.details);
         // console.log(this.state.suggPrice);
         const one = this.state.details;
         const two = this.state.suggPrice;
-        const body = { 'details': one, 'suggPrice':two };
+        const three = this.state.item.props.id;
+        const body = { details: one, suggPrice: two, itemId: three, submittedOn: Date() };
         const requestOptions = {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(body, null, 2),
+            credentials: 'include'
         };
         fetch('https://maple-market-db.herokuapp.com/api/item/pricesuggestion', requestOptions)
             .then(async (response) => {
@@ -63,45 +67,46 @@ class PriceSuggestionForm extends React.Component {
         this.nextStep();
     };
 
-    handleChange(event) {
+    handleChange (event) {
         const target = event.target;
         const value = target.value;
         const name = target.id;
         this.setState({ [name]: value });
     }
 
-    handleItemChange(event) {
+    handleItemChange (event) {
         this.nextStep();
+        console.log(event);
         this.setState({ item: event });
     }
 
-    render(props) {
+    render (props) {
         const { step } = this.state;
         const { item, details, suggPrice } = this.state;
         const values = { item, details, suggPrice };
         switch (step) {
-            case 0:
-                return (
-                    <div>
+        case 0:
+            return (
+                <div>
                         step 0
-                        <ChooseItem
-                            items={this.props.items}
-                            nextStep={this.nextStep}
-                            handleItemChange={this.handleItemChange}
-                        />
-                    </div>
-                );
-            case 1:
-                return (
-                    <ProvideDetails
-                        values={values}
-                        submitSugg={this.submitSugg}
-                        handleChange={this.handleChange}
-                        prevStep={this.prevStep}
+                    <ChooseItem
+                        items={this.props.items}
+                        nextStep={this.nextStep}
+                        handleItemChange={this.handleItemChange}
                     />
-                );
-            default:
-                return <div>Submitted!</div>;
+                </div>
+            );
+        case 1:
+            return (
+                <ProvideDetails
+                    values={values}
+                    submitSugg={this.submitSugg}
+                    handleChange={this.handleChange}
+                    prevStep={this.prevStep}
+                />
+            );
+        default:
+            return <div>Submitted!</div>;
         }
     }
 }
