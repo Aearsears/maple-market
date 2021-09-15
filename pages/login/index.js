@@ -42,12 +42,6 @@ const SignUpForm = () => {
                 .then(async (response) => {
                     const sta = response.status;
                     console.log(sta);
-                    // check for error response
-                    if (!response.ok) {
-                        // get error message from body or default to response status
-                        const error = (sta && sta.message) || response.status;
-                        return Promise.reject(error);
-                    }
                     if (sta === 200) {
                         Router.push('/');
                         return;
