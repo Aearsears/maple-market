@@ -35,6 +35,46 @@ class PriceSuggestionForm extends React.Component {
     };
 
     submitSugg = () => {
+        // send the post request
+        // console.log(this.state.details);
+        // console.log(this.state.suggPrice);
+        const one = props.values.details;
+        const two = props.values.suggPrice;
+        const three = props.values.item.props.id;
+        const four = props.userdata.id;
+        const body = {
+            details: one,
+            suggPrice: two,
+            itemId: three,
+            submittedOn: Date(),
+            user_id: four,
+        };
+        const requestOptions = {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(body, null, 2),
+            credentials: 'include',
+        };
+
+        fetch(
+            'https://maple-market-db.herokuapp.com/api/item/pricesuggestion',
+            requestOptions
+        )
+            .then(async (response) => {
+                const data = await response.status;
+
+                // check for error response
+                if (!response.ok) {
+                    // get error message from body or default to response status
+                    const error = (data && data.message) || response.status;
+                    return Promise.reject(error);
+                }
+            })
+            .catch((error) => {
+                console.error('There was an error!', error);
+                this.nextStep();
+                this.nextStep();
+            });
         this.nextStep();
     };
 
@@ -76,8 +116,9 @@ class PriceSuggestionForm extends React.Component {
                     prevStep={this.prevStep}
                 />
             );
-        case 2:
-            return <SubmitPage values={values} user={this.props.userdata}></SubmitPage>;
+        case 2: return(
+            <div>Price suggestion successfully created!</div>
+        );
         default:
             return <div>There was an error.</div>;
         }
