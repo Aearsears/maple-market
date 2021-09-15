@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import Navbar from '../../components/navbar';
 import Header from '../../components/header';
 import Footer from '../../components/footer';
@@ -12,6 +12,9 @@ import Router from 'next/router';
 import 'tailwindcss/tailwind.css';
 
 const SignUpForm = () => {
+    const[signinSuccess, setSigninSuccess] = useState(true);
+    const[errorMess, setErrorMess] = useState('');
+
     const validationSchema = yup.object({
         email: yup
             .string('Enter your email')
@@ -37,19 +40,26 @@ const SignUpForm = () => {
             };
             fetch('/api/login', requestOptions)
                 .then(async (response) => {
-                    const data = await response;
-                    console.log(data);
+                    const sta = response.status;
+                    console.log(sta);
                     // check for error response
                     if (!response.ok) {
                         // get error message from body or default to response status
-                        const error = (data && data.message) || response.status;
+                        const error = (sta && sta.message) || response.status;
                         return Promise.reject(error);
                     }
-                    if (response.status === 200) {
+                    if (sta === 200) {
                         Router.push('/');
+                        return;
+                    }
+                    else if(sta===401){
+                        const err = await response.text();
+                        setErrorMess(err);
+                        setSigninSuccess(false);
+                        return;
                     }
                     else {
-                        throw new Error(await response.text());
+                        throw new Error(await response.json());
                     }
                 })
                 .catch((error) => {
@@ -118,6 +128,9 @@ const SignUpForm = () => {
                     </Button>
                 </form>
             </div>
+            {
+                !signinSuccess ? <div> errorMess </div> : null
+            }
             <Footer />
         </div>
     );
