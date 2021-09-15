@@ -33,14 +33,14 @@ const UserPage = (props) => {
     );
 };
 
-export async function getServerSideProps (context) {
+export async function getServerSideProps(context) {
     const requestOptions = {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json',
-            cookie: context.req.headers.cookie
+            cookie: context.req.headers.cookie,
         },
-        credentials: 'include'
+        credentials: 'include',
     };
     // const cookies = context.req.headers.cookie;
     // console.log(cookies);
@@ -49,17 +49,20 @@ export async function getServerSideProps (context) {
         requestOptions
     );
     const userdata = await res.json();
-    console.log('RESPONSE FROM FRONT END: ');
-    console.log(userdata);
+    // console.log('RESPONSE FROM FRONT END: ');
+    // console.log(userdata);
 
     if (!userdata) {
         return {
-            notFound: true
+            redirect: {
+                destination: '/login',
+                permanent: false,
+            },
         };
     }
 
     return {
-        props: { userdata } // will be passed to the page component as props
+        props: { userdata }, // will be passed to the page component as props
     };
 }
 

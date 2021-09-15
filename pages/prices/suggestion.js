@@ -77,12 +77,43 @@ class PriceSuggestion extends React.Component {
                         Welcome to MapleMarket!
                     </h1>
                     <h1>Price suggestion</h1>
-                    <PriceSuggestionForm items={items} />
+                    <PriceSuggestionForm items={items} user={this.props.userdata} />
                     <Footer />
                 </div>
             );
         }
     }
 }
+export async function getServerSideProps(context) {
+    const requestOptions = {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
+            cookie: context.req.headers.cookie,
+        },
+        credentials: 'include',
+    };
+    // const cookies = context.req.headers.cookie;
+    // console.log(cookies);
+    const res = await fetch(
+        'https://maple-market-db.herokuapp.com/user',
+        requestOptions
+    );
+    const userdata = await res.json();
+
+    if (!userdata) {
+        return {
+            redirect: {
+                destination: '/login',
+                permanent: false,
+            },
+        };
+    }
+
+    return {
+        props: { userdata }, // will be passed to the page component as props
+    };
+}
+
 
 export default PriceSuggestion;

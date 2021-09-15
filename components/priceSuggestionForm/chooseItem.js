@@ -1,6 +1,5 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import ItemGrid from '../itemgrid';
-import { Button } from '@material-ui/core';
 import 'tailwindcss/tailwind.css';
 
 // first step choose your item

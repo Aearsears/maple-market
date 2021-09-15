@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { Button, TextField } from '@material-ui/core';
 import 'tailwindcss/tailwind.css';
 import ItemCard from '../itemCard';
