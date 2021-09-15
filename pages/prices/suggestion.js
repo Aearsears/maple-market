@@ -99,9 +99,9 @@ export async function getServerSideProps(context) {
         'https://maple-market-db.herokuapp.com/user',
         requestOptions
     );
-    const userdata = await res.json();
+    const st = res.status;
 
-    if (!userdata) {
+    if (st===500) {
         return {
             redirect: {
                 destination: '/login',
@@ -109,7 +109,7 @@ export async function getServerSideProps(context) {
             },
         };
     }
-
+    const userdata = res.json();
     return {
         props: { userdata }, // will be passed to the page component as props
     };
