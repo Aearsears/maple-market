@@ -2,9 +2,6 @@ import React from 'react';
 import Navbar from '../../components/navbar';
 import Header from '../../components/header';
 import Footer from '../../components/footer';
-import Button from '@material-ui/core/Button';
-import TextField from '@material-ui/core/TextField';
-import { Typography } from '@material-ui/core';
 import Head from 'next/head';
 import 'tailwindcss/tailwind.css';
 

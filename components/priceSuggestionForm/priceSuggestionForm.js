@@ -2,7 +2,6 @@ import React from 'react';
 import 'tailwindcss/tailwind.css';
 import ChooseItem from './chooseItem';
 import ProvideDetails from './provideDetails';
-import SubmitPage from './submitPage';
 
 // first step choose your item
 // second step fill in details, price, proof(pictures?) and submit

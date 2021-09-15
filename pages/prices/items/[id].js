@@ -1,4 +1,3 @@
-import { useRouter } from 'next/router';
 import React from 'react';
 import Navbar from '../../../components/navbar';
 import Header from '../../../components/header';
@@ -14,7 +13,6 @@ import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import Head from 'next/head';
 import Link from 'next/link';
-import ItemCard from '../../../components/itemCard';
 import Image from 'next/image';
 import {
     LineChart,
