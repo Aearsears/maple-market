@@ -27,6 +27,7 @@ import {
 } from 'recharts';
 
 function ItemPricePage (props) {
+    console.log(props);
     let graph;
     const check = Object.keys(props.pricedata).length;
     // console.log("LOOK HERE:"+check);
@@ -86,7 +87,7 @@ function ItemPricePage (props) {
                             <Image
                                 src={
                                     'https://maple-market-db.herokuapp.com/api/item/' +
-                                    props.itemdata.id +
+                                    props.itemdata[0].id +
                                     '/img'
                                 }
                                 alt={props.name}
@@ -96,24 +97,24 @@ function ItemPricePage (props) {
                         </div>
                         <div className="itemdatadiv m-2 ">
                             <Typography variant="h4">
-                                {props.itemdata.name}
+                                {props.itemdata[0].name}
                             </Typography>
                             <div className="flex pricedata">
                                 <Typography variant="h6">
-                                    {props.itemdata.price} Mesos&nbsp;&nbsp;
+                                    {props.itemdata[0].price} Mesos&nbsp;&nbsp;
                                 </Typography>
                                 <Typography
                                     variant="h6"
                                     className={
-                                        props.itemdata.pchange > 0
+                                        props.itemdata[0].pchange > 0
                                             ? 'text-green-500'
                                             : 'text-red-500'
                                     }
                                 >
-                                    {props.itemdata.pchange}(
+                                    {props.itemdata[0].pchange}(
                                     {(
-                                        (props.itemdata.pchange /
-                                            props.itemdata.price) *
+                                        (props.itemdata[0].pchange /
+                                            props.itemdata[0].price) *
                                         100
                                     ).toFixed(2) + '%'}
                                     )
