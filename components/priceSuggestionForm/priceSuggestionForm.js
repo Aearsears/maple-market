@@ -38,10 +38,10 @@ class PriceSuggestionForm extends React.Component {
         // send the post request
         // console.log(this.state.details);
         // console.log(this.state.suggPrice);
-        const one = props.values.details;
-        const two = props.values.suggPrice;
-        const three = props.values.item.props.id;
-        const four = props.userdata.id;
+        const one = this.state.details;
+        const two = this.state.suggPrice;
+        const three = this.state.item.props.id;
+        const four = this.props.user.id;
         const body = {
             details: one,
             suggPrice: two,
