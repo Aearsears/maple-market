@@ -8,16 +8,6 @@ import 'tailwindcss/tailwind.css';
 const SubmitPage = (props) => {
     const [hasSent] = useState(null);
 
-    useEffect(() => {
-        const status = submitSugg();
-        if (status === 200) {
-            hasSent = true;
-        }
-        else {
-            hasSent = false;
-        }
-    });
-
     submitSugg = () => {
         // send the post request
         // console.log(this.state.details);
@@ -59,6 +49,17 @@ const SubmitPage = (props) => {
                 console.error('There was an error!', error);
             });
     };
+    
+    useEffect(() => {
+        const status = submitSugg();
+        if (status === 200) {
+            hasSent = true;
+        }
+        else {
+            hasSent = false;
+        }
+    });
+
 
     return (
         <div className="h-screen">

@@ -60,7 +60,7 @@ export async function getServerSideProps(context) {
             },
         };
     }
-    const userdata = res.json();
+    const userdata = await res.json();
     return {
         props: { userdata }, // will be passed to the page component as props
     };
