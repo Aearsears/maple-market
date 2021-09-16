@@ -11,7 +11,7 @@ import Head from 'next/head';
 import Router from 'next/router';
 import 'tailwindcss/tailwind.css';
 
-const SignUpForm = () => {
+const LoginForm = () => {
     const[signinSuccess, setSigninSuccess] = useState(true);
     const[errorMess, setErrorMess] = useState('');
 
@@ -53,12 +53,11 @@ const SignUpForm = () => {
                         return;
                     }
                     else {
-                        throw new Error(await response.json());
+                        return Promise.reject(sta);
                     }
                 })
                 .catch((error) => {
                     console.error('There was an error!', error);
-                    console.error('There was an error: stack: ', error.stack);
                 });
         }
     });
@@ -123,11 +122,11 @@ const SignUpForm = () => {
                 </form>
             </div>
             {
-                !signinSuccess ? <div> errorMess </div> : null
+                !signinSuccess ? <div> {errorMess} </div> : null
             }
             <Footer />
         </div>
     );
 };
 
-export default SignUpForm;
+export default LoginForm;

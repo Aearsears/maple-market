@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import Navbar from '../../components/navbar';
 import Header from '../../components/header';
 import Footer from '../../components/footer';
@@ -8,9 +8,13 @@ import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import { Typography } from '@material-ui/core';
 import Head from 'next/head';
+import { Router } from 'next/router';
 import 'tailwindcss/tailwind.css';
 
 const SignUpForm = () => {
+    const[signupSuccess, setSignupSuccess] = useState(true);
+    const[errorMess, setErrorMess] = useState('');
+
     const validationSchema = yup.object({
         username: yup
             .string('Enter your email')
@@ -43,19 +47,25 @@ const SignUpForm = () => {
                 requestOptions
             )
                 .then(async (response) => {
-                    const data = await response.json();
-
-                    // check for error response
-                    if (!response.ok) {
-                        // get error message from body or default to response status
-                        const error = (data && data.message) || response.status;
-                        return Promise.reject(error);
+                    const sta = response.status;
+                    if (sta === 200) {
+                        Router.push('/login');
+                        return;
                     }
-                    return data;
+                    else if(sta===401){
+                        const err = await response.text();
+                        const regex = /[()]/;
+                        const formatted = err.slice(err.indexOf('=')+1).replace(regex,'').replace(regex,'');
+                        setErrorMess(formatted);
+                        setSignupSuccess(false);
+                        return;
+                    }
+                    else {
+                        return Promise.reject(sta);
+                    }
                 })
                 .catch((error) => {
                     console.error('There was an error!', error);
-                    console.error('There was an error!', error.stack);
                 });
         }
     });
@@ -138,6 +148,9 @@ const SignUpForm = () => {
                     </Button>
                 </form>
             </div>
+            {
+                !signupSuccess ? <div> {errorMess} </div> : null
+            }
             <Footer />
         </div>
     );
