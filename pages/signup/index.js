@@ -8,7 +8,7 @@ import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import { Typography } from '@material-ui/core';
 import Head from 'next/head';
-import { Router } from 'next/router';
+import Router from 'next/router';
 import 'tailwindcss/tailwind.css';
 
 const SignUpForm = () => {
