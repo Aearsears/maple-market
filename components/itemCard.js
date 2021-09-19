@@ -4,6 +4,9 @@ import Typography from '@material-ui/core/Typography';
 import React from 'react';
 import Image from 'next/image';
 import ButtonBase from '@material-ui/core/ButtonBase';
+import ArrowUpwardIcon from '@material-ui/icons/ArrowUpward';
+import ArrowDownwardIcon from '@material-ui/icons/ArrowDownward';
+import Tooltip from '@material-ui/core/Tooltip';
 import Link from 'next/link';
 
 class ItemCard extends React.Component {
@@ -15,9 +18,23 @@ class ItemCard extends React.Component {
     }
 
     onClick = (event) => {
-        console.log('working!');
         event.preventDefault();
     };
+
+    imageTooltipcomp = React.forwardRef(function imageTooltipcomp(props,ref){
+        // console.log(props);
+        return <div {...props} ref={ref}>                                <Image
+            src={
+                'https://maple-market-db.herokuapp.com/api/item/' +
+                props.props.id +
+                '/img'
+            }
+            alt={props.props.name}
+            width={64}
+            height={64}
+        />
+        </div>;
+    });
 
     render (props) {
         let card;
@@ -58,7 +75,8 @@ class ItemCard extends React.Component {
             card = (
                 <Card
                     className={
-                        this.props.pchange > 0 ? 'bg-green-300' : 'bg-red-300'
+                        // this.props.pchange > 0 ? 'bg-green-300' : 'bg-red-300'
+                        'bg-white'
                     }
                 >
                     <ButtonBase className='h-full w-full'>
@@ -68,23 +86,16 @@ class ItemCard extends React.Component {
       </Typography>
       <Typography className='typo' color='textSecondary'>
           {this.props.price}
-      </Typography> */}
-                            <Image
-                                src={
-                                    'https://maple-market-db.herokuapp.com/api/item/' +
-                                    this.props.id +
-                                    '/img'
-                                }
-                                alt={this.props.name}
-                                width={64}
-                                height={64}
-                            />
+      </Typography> */}     <Tooltip title={this.props.itemName} arrow>
+
+                                <this.imageTooltipcomp props={this.props} />
+                            </Tooltip>
                         </CardContent>
                     </ButtonBase>
 
                     <CardContent className='cursor-pointer'>
                         <Typography variant='subtitle1' align='center'>
-                            {this.props.pchange > 0 ? '↑' : '↓'}{' '}
+                            {this.props.pchange > 0 ? <ArrowUpwardIcon className="fill-current text-green-600"/> : <ArrowDownwardIcon className="fill-current text-red-600"/>}{' '}
                             {this.props.pchange}
                         </Typography>
                     </CardContent>

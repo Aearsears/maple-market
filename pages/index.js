@@ -17,7 +17,7 @@ class WelcomePage extends React.Component {
     }
 
     componentDidMount () {
-        fetch('https://maple-market-db.herokuapp.com/test', {
+        fetch('https://maple-market-db.herokuapp.com/frontpage', {
             headers: {
                 'Content-Type': 'application/json',
                 Accept: 'application/json'
@@ -46,7 +46,7 @@ class WelcomePage extends React.Component {
     render () {
         const { error, isLoaded, items } = this.state;
         if (error) {
-            return <div>Error:{error.message}</div>;
+            return <div>404 Error: {error.message}</div>;
         }
         else if (!isLoaded) {
             return <div>Loading...</div>;

@@ -17,7 +17,7 @@ class Prices extends React.Component {
     }
 
     componentDidMount () {
-        fetch('https://maple-market-db.herokuapp.com/test', {
+        fetch('https://maple-market-db.herokuapp.com/frontpage', {
             headers: {
                 'Content-Type': 'application/json',
                 Accept: 'application/json'

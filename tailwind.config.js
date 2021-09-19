@@ -13,6 +13,11 @@ module.exports = {
                 'Ash-Gray': '#b7b7a4',
                 Artichoke: '#a5a58d',
                 Ebony: '#6b705c'
+            },
+            borderWidth: {
+                '50':'50px',
+                '20':'20px',
+                '100':'100px'
             }
         }
     },

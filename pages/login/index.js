@@ -7,6 +7,7 @@ import * as yup from 'yup';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import { Typography } from '@material-ui/core';
+import Alert from '@material-ui/lab/Alert';
 import Head from 'next/head';
 import Router from 'next/router';
 import 'tailwindcss/tailwind.css';
@@ -122,7 +123,7 @@ const LoginForm = () => {
                 </form>
             </div>
             {
-                !signinSuccess ? <div> {errorMess} </div> : null
+                !signinSuccess ? <div> <Alert severity="error">{errorMess}</Alert> </div> : null
             }
             <Footer />
         </div>

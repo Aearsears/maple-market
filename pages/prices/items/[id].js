@@ -4,13 +4,6 @@ import Header from '../../../components/header';
 import Footer from '../../../components/footer';
 import Button from '@material-ui/core/Button';
 import { Typography } from '@material-ui/core';
-import Table from '@material-ui/core/Table';
-import TableBody from '@material-ui/core/TableBody';
-import TableCell from '@material-ui/core/TableCell';
-import TableContainer from '@material-ui/core/TableContainer';
-import TableHead from '@material-ui/core/TableHead';
-import TableRow from '@material-ui/core/TableRow';
-import Paper from '@material-ui/core/Paper';
 import Head from 'next/head';
 import Link from 'next/link';
 import Image from 'next/image';
@@ -21,11 +14,12 @@ import {
     XAxis,
     YAxis,
     Tooltip,
-    ResponsiveContainer
+    ResponsiveContainer,
 } from 'recharts';
+import PriceSuggCard from '../../../components/priceSuggCard';
 
-function ItemPricePage (props) {
-    console.log(props);
+function ItemPricePage(props) {
+    // console.log(props);
     let graph;
     const check = Object.keys(props.pricedata).length;
     // console.log("LOOK HERE:"+check);
@@ -130,48 +124,23 @@ function ItemPricePage (props) {
                 </div>
 
                 <div className="pricesuggcontainer w-3/6">
-                    <Typography className='text-center'>Active Price Suggestions</Typography>
-                    <TableContainer component={Paper}>
-                        <Table>
-                            <TableHead>
-                                <TableRow>
-                                    <TableCell>
-                                        User
-                                    </TableCell>
-                                    <TableCell align="right">
-                                        Suggested Price
-                                    </TableCell>
-                                    <TableCell align="right">
-                                        Date
-                                    </TableCell>
-                                </TableRow>
-                            </TableHead>
-                            <TableBody>
-                                { Object.keys(props.suggestiondata).length > 0
-                                    ? (
-
-                                        props.suggestiondata.map((row, index) => (
-                                            <TableRow key={index}>
-                                                <TableCell component="th" scope="row">
-                                                    {row.username}
-                                                </TableCell>
-                                                <TableCell align="right">
-                                                    {row.suggested_price}
-                                                </TableCell>
-                                                <TableCell align="right">
-                                                    {row.submittedOn}
-                                                </TableCell>
-                                            </TableRow>
-                                        )))
-                                    : (<TableRow>
-                                        <TableCell>
-                                        No price suggestions. Why not be the first one?
-                                        </TableCell>
-                                    </TableRow>)
-                                }
-                            </TableBody>
-                        </Table>
-                    </TableContainer>
+                    <Typography className="text-center">
+                        Active Price Suggestions
+                    </Typography>
+                    {Object.keys(props.suggestiondata).length > 0 ? (
+                        props.suggestiondata.map((row, index) => {
+                            <PriceSuggCard
+                                index={index}
+                                item={props.itemdata[0]}
+                                suggestiondata={row}
+                            />;
+                        })
+                    ) : (
+                        <div className="text-center">
+                            There are no active price suggestions. Why not be
+                            the first one?
+                        </div>
+                    )}
                 </div>
             </div>
             <Footer />
@@ -179,7 +148,7 @@ function ItemPricePage (props) {
     );
 }
 
-export async function getServerSideProps (context) {
+export async function getServerSideProps(context) {
     const res = await fetch(
         `https://maple-market-db.herokuapp.com/api/item/${context.params.id}`
     );
@@ -197,12 +166,12 @@ export async function getServerSideProps (context) {
     // if item's data does not exist throw a 404
     if (!itemdata) {
         return {
-            notFound: true
+            notFound: true,
         };
     }
 
     return {
-        props: { itemdata, pricedata, suggestiondata } // will be passed to the page component as props
+        props: { itemdata, pricedata, suggestiondata }, // will be passed to the page component as props
     };
 }
 

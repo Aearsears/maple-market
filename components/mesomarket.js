@@ -19,7 +19,7 @@ class Mesomarket extends React.Component {
     }
 
     componentDidMount () {
-        fetch('https://maple-market-db.herokuapp.com/mesomarket', {
+        fetch('https://maple-market-db.herokuapp.com/api/mesomarket', {
             headers: {
                 'Content-Type': 'application/json',
                 Accept: 'application/json'
@@ -48,7 +48,7 @@ class Mesomarket extends React.Component {
     render () {
         const { error, isLoaded, items } = this.state;
         if (error) {
-            return <div>Error:{error.message}</div>;
+            return <div>404 Error: {error.message}</div>;
         }
         else if (!isLoaded) {
             return <div>Loading...</div>;
@@ -71,16 +71,20 @@ class Mesomarket extends React.Component {
                             </TableRow>
                             <TableRow>
                                 <TableCell>World</TableCell>
+                                <TableCell>Server</TableCell>
                                 <TableCell align="right">
                                     Exchange Rate
                                 </TableCell>
                             </TableRow>
                         </TableHead>
                         <TableBody>
-                            {items.map((row) => (
-                                <TableRow key={row.name}>
+                            {items.map((row,index) => (
+                                <TableRow key={index}>
                                     <TableCell component="th" scope="row">
-                                        {row.name}
+                                        {row.region}
+                                    </TableCell>
+                                    <TableCell component="th" scope="row">
+                                        {row.server}
                                     </TableCell>
                                     <TableCell align="right">
                                         {row.rate}
