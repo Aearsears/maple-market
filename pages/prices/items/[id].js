@@ -47,10 +47,11 @@ function ItemPricePage(props) {
                 <p>{props.pricedata[0]['Adj Close']}</p>
             </div>
         );
-    }
+    } 
     else {
         graph = <div>No price data</div>;
     }
+    console.log(props.suggestiondata);
     return (
         <div className="h-screen">
             <Head>
@@ -127,12 +128,21 @@ function ItemPricePage(props) {
                     <Typography className="text-center">
                         Active Price Suggestions
                     </Typography>
+                    {/* The parenthesis are returning a single value, the curly braces are executing multiple lines of code. */}
                     {Object.keys(props.suggestiondata).length > 0 ? (
-                        props.suggestiondata.map((row, index) => {
-                            <PriceSuggCard
-                                index={index}
-                                item={props.itemdata[0]}
-                                suggestiondata={row}
+                        props.suggestiondata.map((item, index) => {
+                            return <PriceSuggCard
+                                key={index}
+                                itemname={props.itemdata[0].name}
+                                price={props.itemdata[0].price}
+                                pchange={props.itemdata[0].pchange}
+                                itemid={props.itemdata[0].id}
+                                submittedOn={item.submittedon}
+                                updatedOn={item.updatedon}
+                                username={item.user}
+                                suggested_price={item.suggested_price}
+                                upvotes={item.upvotes}
+                                downvotes={item.downvotes}
                             />;
                         })
                     ) : (

@@ -1,25 +1,25 @@
-import Card from "@material-ui/core/Card";
-import CardContent from "@material-ui/core/CardContent";
-import Typography from "@material-ui/core/Typography";
-import React from "react";
-import Image from "next/image";
-import ButtonBase from "@material-ui/core/ButtonBase";
-import ArrowUpwardIcon from "@material-ui/icons/ArrowUpward";
-import ArrowDownwardIcon from "@material-ui/icons/ArrowDownward";
-import KeyboardArrowRightIcon from "@material-ui/icons/KeyboardArrowRight";
-import Link from "next/link";
+import Card from '@material-ui/core/Card';
+import CardContent from '@material-ui/core/CardContent';
+import Typography from '@material-ui/core/Typography';
+import React from 'react';
+import Image from 'next/image';
+import ButtonBase from '@material-ui/core/ButtonBase';
+import ArrowUpwardIcon from '@material-ui/icons/ArrowUpward';
+import ArrowDownwardIcon from '@material-ui/icons/ArrowDownward';
+import KeyboardArrowRightIcon from '@material-ui/icons/KeyboardArrowRight';
+import Link from 'next/link';
 
 class PriceSuggCard extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
             a: [],
-            hasError:false
+            hasError: false,
         };
     }
 
     onClick = (event) => {
-        alert("this works");
+        alert('this works');
         event.preventDefault();
     };
 
@@ -32,7 +32,7 @@ class PriceSuggCard extends React.Component {
                             className="fill-current text-gray-600 cursor-pointer"
                             onClick={this.onClick}
                         />
-                        <p>test</p>
+                        <p>{(this.upvotes+this.downvotes) || 0}</p>
                         <ArrowDownwardIcon
                             className="fill-current text-gray-600 cursor-pointer"
                             onClick={this.onClick}
@@ -43,25 +43,24 @@ class PriceSuggCard extends React.Component {
                 <CardContent className="flex w-full h-full">
                     <CardContent>
                         <CardContent className="p-0">
-                            <Typography>{this.props.item.name}</Typography>
+                            <Typography>{this.props.itemname}</Typography>
                             <Typography>
                                 Submitted on&nbsp;
-                                {this.props.suggestiondata.submittedOn}{" "}
-                                by&nbsp;
-                                {this.props.suggestiondata.username}
+                                {this.props.submittedOn} by&nbsp;
+                                {this.props.username}
+                            </Typography>
+                            <Typography>
+                                Updated on&nbsp;
+                                {this.props.updatedOn} by&nbsp;
+                                {this.props.username}
                             </Typography>
                             <div className="inline-flex items-center">
                                 <div className="bg-gray-500 rounded-lg p-2 text-white	">
-                                    {this.props.item.price}
+                                    {this.props.price}
                                 </div>
-                                <KeyboardArrowRightIcon
-                                    className="fill-current text-gray-500"
-                                />
+                                <KeyboardArrowRightIcon className="fill-current text-gray-500" />
                                 <div className="bg-blue-500 rounded-lg p-2 text-white	">
-                                    {
-                                        this.props.suggestiondata
-                                            .suggested_price
-                                    }
+                                    {this.props.suggested_price}
                                 </div>
                             </div>
                         </CardContent>
@@ -69,11 +68,11 @@ class PriceSuggCard extends React.Component {
                     <CardContent>
                         <Image
                             src={
-                                "https://maple-market-db.herokuapp.com/api/item/" +
-                                this.props.item.id +
-                                "/img"
+                                'https://maple-market-db.herokuapp.com/api/item/' +
+                                this.props.itemid +
+                                '/img'
                             }
-                            alt={this.props.item.itemName}
+                            alt={this.props.name}
                             width={64}
                             height={64}
                         />
@@ -86,7 +85,7 @@ class PriceSuggCard extends React.Component {
                             <ArrowUpwardIcon className="fill-current text-gray-600" />
                         ) : (
                             <ArrowDownwardIcon className="fill-current text-gray-600" />
-                        )}{" "}
+                        )}{' '}
                         {this.props.pchange}
                     </Typography>
                 </CardContent>
