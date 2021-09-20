@@ -42,7 +42,6 @@ const LoginForm = () => {
             fetch('/api/login', requestOptions)
                 .then(async (response) => {
                     const sta = response.status;
-                    console.log(sta);
                     if (sta === 200) {
                         Router.push('/');
                         return;

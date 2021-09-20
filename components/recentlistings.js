@@ -1,6 +1,4 @@
 import React from 'react';
-import Image from 'next/image';
-import pic from '../public/butterfly.png';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
@@ -35,9 +33,9 @@ class Recentlistings extends React.Component {
                     <TableBody>
                         <TableRow key="test">
                             <TableCell component="th" scope="row">
-                                test
+                                TBA
                             </TableCell>
-                            <TableCell align="right">test2</TableCell>
+                            <TableCell align="right">TBA</TableCell>
                         </TableRow>
                     </TableBody>
                 </Table>

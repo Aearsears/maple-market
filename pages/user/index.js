@@ -24,7 +24,8 @@ const UserPage = (props) => {
                 {' '}
                 Welcome to MapleMarket!{' '}
             </h1>
-            <h1>{props.userdata.username}</h1>
+            <h1>Username: &nbsp; {props.userdata.username}</h1>
+            <h1>Display name: &nbsp; {props.userdata.displayname}</h1>
             <Footer />
         </div>
     );

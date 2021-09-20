@@ -51,7 +51,6 @@ function ItemPricePage(props) {
     else {
         graph = <div>No price data</div>;
     }
-    console.log(props.suggestiondata);
     return (
         <div className="h-screen">
             <Head>
@@ -143,6 +142,7 @@ function ItemPricePage(props) {
                                 suggested_price={item.suggested_price}
                                 upvotes={item.upvotes}
                                 downvotes={item.downvotes}
+                                suggid={item.id}
                             />;
                         })
                     ) : (

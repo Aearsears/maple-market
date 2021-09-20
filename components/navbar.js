@@ -13,16 +13,10 @@ class Navbar extends React.Component {
                             </a>
                         </Link>
                         <Link href="/prices">
-                            <a className="px-2 md:pl-0 md:mr-3 md:pr-3 text-gray-700 no-underline md:border-r border-black">
+                            <a className="px-2 md:pl-0 md:mr-3 md:pr-3 text-gray-700 no-underline">
                                 Prices
                             </a>
                         </Link>
-                        <a
-                            href="#"
-                            className="px-2 md:pl-0 md:mr-3 md:pr-3 text-gray-700 no-underline"
-                        >
-                            Listings
-                        </a>
                     </div>
                     <div className="w-full md:w-1/2 text-center md:text-right pb-4 md:p-0">
                         <input
